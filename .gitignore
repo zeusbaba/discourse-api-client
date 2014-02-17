@@ -1,6 +1,17 @@
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# binary files
+target/*
+
+tempfile.java
+
