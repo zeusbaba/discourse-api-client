@@ -335,7 +335,7 @@ public class DiscourseApiClient {
 		//-if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
 		
 		String methodName = "";
-		methodName += "users/search/users.json";
+		methodName += "/users/search/users.json";
 		if (parameters.containsKey("username")) {
 			parameters.put("term", parameters.get("username"));
 		}
@@ -373,7 +373,7 @@ this.get('search.json', { term: term }, function(error, body, httpCode) {
 		//-if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
 		
 		String methodName = "";
-		methodName += "search.json";
+		methodName += "/search.json";
 		if (parameters.containsKey("term")) {
 			parameters.put("term", parameters.get("term"));
 		}
