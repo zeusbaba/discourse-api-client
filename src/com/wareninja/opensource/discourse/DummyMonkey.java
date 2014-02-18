@@ -1,3 +1,11 @@
+/***
+ *   Copyleft 2014 - WareNinja.com / Rumble In The Jungle!
+ * 
+ *  @author: yg@wareninja.com
+ *  @see https://github.com/WareNinja
+ *  disclaimer: I code for fun, dunno what I'm coding about :-)
+ */
+
 package com.wareninja.opensource.discourse;
 
 import java.util.HashMap;
@@ -42,6 +50,52 @@ public class DummyMonkey {
 		parameters.put("username", "test_monkey_1");
 		parameters.put("password", "test_monkey_1_pwd");
 		mDiscourseApiClient.createUser(parameters, new ResponseListener(){
+
+			@Override
+			public void onBegin(String info) {
+				System.out.println("info: "+info);
+			}
+			@Override
+			public void onComplete_wModel(ResponseModel responseModel) {
+				// successful result
+				System.out.println("SUCCESS! -> " + responseModel.toString());
+			}
+
+			@Override
+			public void onError_wMeta(ResponseMeta responseMeta) {
+				// error
+				System.out.println("ERROR! -> " + responseMeta.toString());
+			}
+		});
+		
+		try {// silly way of waiting for user creation!!
+			Thread.sleep(3000);
+		} catch (Exception ex) {}
+		
+		parameters = new HashMap<String, String>();
+		parameters.put("username", "test_monkey_1");
+		mDiscourseApiClient.searchForUser(parameters, new ResponseListener(){
+
+			@Override
+			public void onBegin(String info) {
+				System.out.println("info: "+info);
+			}
+			@Override
+			public void onComplete_wModel(ResponseModel responseModel) {
+				// successful result
+				System.out.println("SUCCESS! -> " + responseModel.toString());
+			}
+
+			@Override
+			public void onError_wMeta(ResponseMeta responseMeta) {
+				// error
+				System.out.println("ERROR! -> " + responseMeta.toString());
+			}
+		});
+		
+		parameters = new HashMap<String, String>();
+		parameters.put("term", "test_monkey");
+		mDiscourseApiClient.search(parameters, new ResponseListener(){
 
 			@Override
 			public void onBegin(String info) {

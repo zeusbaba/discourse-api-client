@@ -63,6 +63,8 @@ public class DiscourseApiClient {
 	 */
 	public void getUser(Map<String, String> parameters, ResponseListener responseListener) {
 		
+		final String TAG = "getUser";
+		
 		// example: https://base_domain/users/<username>.json?api_key=<key>&api_username=<caller_username>
 		
 		MyWebClient webClient = new MyWebClient(this.api_url);
@@ -80,7 +82,7 @@ public class DiscourseApiClient {
 			methodName += "/users/" + this.api_username + ".json";
 		}
 		
-		responseListener.onBegin("BEGIN"+"|"+"getUser"+"| methodName:"+methodName );
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.get(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
@@ -104,6 +106,8 @@ public class DiscourseApiClient {
     'password': password,
     */
 	public void createUser(Map<String, String> parameters, ResponseListener responseListener) {
+		
+		final String TAG = "createUser";
 		
 		ResponseModel responseModel = new ResponseModel();
 		
@@ -150,7 +154,7 @@ public class DiscourseApiClient {
 			methodName += "/users";
 			methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
 			
-			responseListener.onBegin("BEGIN"+"|"+"createUser"+"| methodName:"+methodName + " | parameters: "+parameters );
+			responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName + " | parameters: "+parameters );
 			
 			String responseStr = webClient.post(methodName, parameters);
 			responseModel.meta.code = webClient.getHttpResponseCode();
@@ -176,6 +180,7 @@ public class DiscourseApiClient {
 	}
 	protected String fetchConfirmationValue(Map<String, String> parameters) {
 		
+		final String TAG = "fetchConfirmationValue";
 		/*// used right before createUser
 		 * endpoint: users/hp.json
 		 * discourse api should bypass the honeypot since it is a trusted user (confirmed via api key)
@@ -205,6 +210,7 @@ public class DiscourseApiClient {
 		}
 	}
 	public void approveUser(Map<String, String> parameters, ResponseListener responseListener) {
+		final String TAG = "approveUser";
 		/*
 		this.put('admin/users/' + id + '/approve',
     	{ context: 'admin/users/' + username },
@@ -219,7 +225,7 @@ public class DiscourseApiClient {
 		methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
 		parameters.put("context", "/admin/users/" + parameters.get("username"));
 		
-		responseListener.onBegin("BEGIN"+"|"+"approveUser"+"| methodName:"+methodName );
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.put(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
@@ -235,7 +241,7 @@ public class DiscourseApiClient {
 		}
 	}
 	public void activateUser(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		final String TAG = "activateUser"; 
 		/*
 		this.put('admin/users/' + id + '/activate',
     	{ context: 'admin/users/' + username },
@@ -250,7 +256,7 @@ public class DiscourseApiClient {
 		methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
 		parameters.put("context", "/admin/users/" + parameters.get("username"));
 		
-		responseListener.onBegin("BEGIN"+"|"+"approveUser"+"| methodName:"+methodName );
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.put(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
@@ -266,6 +272,7 @@ public class DiscourseApiClient {
 		}
 	}
 	public void deleteUser(Map<String, String> parameters, ResponseListener responseListener) {
+		final String TAG = "deleteUser";
 		// TODO: 
 		/*
 		this.delete(id + '.json',
@@ -273,6 +280,8 @@ public class DiscourseApiClient {
 		 */
 	}
 	public void loginUser(Map<String, String> parameters, ResponseListener responseListener) {
+		
+		final String TAG = "loginUser";
 		
 		MyWebClient webClient = new MyWebClient(this.api_url);
 		if (parameters==null) parameters = new HashMap<String, String>();
@@ -282,7 +291,7 @@ public class DiscourseApiClient {
 		String methodName = "";
 		methodName += "/session";
 		
-		responseListener.onBegin("BEGIN"+"|"+"loginUser"+"| methodName:"+methodName );
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.post(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
@@ -298,8 +307,96 @@ public class DiscourseApiClient {
 		}
 	}
 	public void logoutUser(Map<String, String> parameters, ResponseListener responseListener) {
+		final String TAG = "logoutUser";
 		// TODO: 
+		/*
+		 this.delete('session/' + username, {}, function(error, body, httpCode) {
+		    callback(error, body, httpCode);
+		  });
+		 */
 	}
+	
+	
+/////////////////////
+//SEARCH
+/////////////////////
+	public void searchForUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// TODO:
+		/*
+		this.get('users/search/users.json', { term: username }, function(error, body, httpCode) {
+		    callback(error, body, httpCode);
+		  });
+		 */
+		final String TAG = "searchForUser";
+		
+		MyWebClient webClient = new MyWebClient(this.api_url);
+		if (parameters==null) parameters = new HashMap<String, String>();
+		if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
+		//-if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
+		
+		String methodName = "";
+		methodName += "users/search/users.json";
+		if (parameters.containsKey("username")) {
+			parameters.put("term", parameters.get("username"));
+		}
+		else if (!TextUtils.isEmpty(this.api_username)) {
+			parameters.put("term", this.api_username);
+		}
+		
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		
+		String responseStr = webClient.get(methodName, parameters);
+		ResponseModel responseModel = new ResponseModel();
+		responseModel.meta.code = webClient.getHttpResponseCode();
+		responseModel.data = responseStr;
+		if (responseModel.meta.code<=201) { // success
+			responseListener.onComplete_wModel(responseModel);
+		}
+		else {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+	}
+	public void search(Map<String, String> parameters, ResponseListener responseListener) {
+		// TODO:
+		/*
+this.get('search.json', { term: term }, function(error, body, httpCode) {
+    callback(error, body, httpCode);
+  });
+		 */
+		final String TAG = "search";
+		
+		MyWebClient webClient = new MyWebClient(this.api_url);
+		if (parameters==null) parameters = new HashMap<String, String>();
+		if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
+		//-if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
+		
+		String methodName = "";
+		methodName += "search.json";
+		if (parameters.containsKey("term")) {
+			parameters.put("term", parameters.get("term"));
+		}
+		else {
+			parameters.put("term", "");
+		}
+		
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		
+		String responseStr = webClient.get(methodName, parameters);
+		ResponseModel responseModel = new ResponseModel();
+		responseModel.meta.code = webClient.getHttpResponseCode();
+		responseModel.data = responseStr;
+		if (responseModel.meta.code<=201) { // success
+			responseListener.onComplete_wModel(responseModel);
+		}
+		else {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+	}
+	
 	
 ///////////////////////
 //TOPICS AND REPLIES
@@ -307,6 +404,12 @@ public class DiscourseApiClient {
 	
 	public void createTopic(Map<String, String> parameters, ResponseListener responseListener) {
 		
+		final String TAG = "createTopic";
+		/*
+this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetype': 'regular' }, function(error, body, httpCode) {
+    callback(error, body, httpCode);
+  });
+		 */
 		MyWebClient webClient = new MyWebClient(this.api_url);
 		if (parameters==null) parameters = new HashMap<String, String>();
 		//if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
@@ -316,7 +419,7 @@ public class DiscourseApiClient {
 		methodName += "/posts";
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		
-		responseListener.onBegin("BEGIN"+"|"+"createTopic"+"| methodName:"+methodName );
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.post(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
@@ -332,6 +435,8 @@ public class DiscourseApiClient {
 		}
 	}
 	public void getCreatedTopics(Map<String, String> parameters, ResponseListener responseListener) {
+		
+		final String TAG = "getCreatedTopics";
 		MyWebClient webClient = new MyWebClient(this.api_url);
 		if (parameters==null) parameters = new HashMap<String, String>();
 		//if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
@@ -341,7 +446,7 @@ public class DiscourseApiClient {
 		methodName += "/user_actions.json";
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		
-		responseListener.onBegin("BEGIN"+"|"+"getCreatedTopics"+"| methodName:"+methodName );
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		if (!TextUtils.isEmpty(this.api_username)) parameters.put("username", this.api_username);
 		//parameters.put("filter", FILTER.NEW_TOPIC.name());
 		String responseStr = webClient.get(methodName, parameters);
@@ -398,14 +503,6 @@ public class DiscourseApiClient {
 		// TODO: 
 	}
 	
-/////////////////////
-//SEARCH
-/////////////////////
-	public void searchForUser(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
-	}
-	public void search(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
-	}
+
 	
 }

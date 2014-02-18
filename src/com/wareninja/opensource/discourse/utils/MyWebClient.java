@@ -20,7 +20,6 @@
  *  
  *  source adapted from: 
  *  https://github.com/wareninja
- *  http://www.josecgomez.com/2010/04/30/android-accessing-restfull-web-services-using-json/
  */
 
 package com.wareninja.opensource.discourse.utils;
@@ -335,7 +334,7 @@ public class MyWebClient {
 		}
 		httpDelete.addHeader("Accept", "text/html,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5");
 		
-		
+		// FIXME: we need HTTP DELETE!!!!
 		/*
 		URI uri = new URIBuilder()
 	        .setScheme("http")
@@ -355,7 +354,6 @@ public class MyWebClient {
 				);
 		httpDelete.setEntity(requestEntity);
 		*/
-		
 		
 		try {
 			httpResponse = httpClient.execute(httpDelete);
