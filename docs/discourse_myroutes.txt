@@ -1,0 +1,416 @@
+# Extracted using standard way: 
+#	RAILS_ENV=production bundle exec rake routes >> myroutes.txt
+
+                               Prefix Verb     URI Pattern                                                   Controller#Action
+                                      GET|POST /404(.:format)                                                exceptions#not_found
+                          sidekiq_web          /sidekiq                                                      Sidekiq::Web
+                                 site GET      /site(.:format)                                               site#index
+                               forums GET      /forums(.:format)                                             forums#index
+                                      POST     /forums(.:format)                                             forums#create
+                            new_forum GET      /forums/new(.:format)                                         forums#new
+                           edit_forum GET      /forums/:id/edit(.:format)                                    forums#edit
+                                forum GET      /forums/:id(.:format)                                         forums#show
+                                      PATCH    /forums/:id(.:format)                                         forums#update
+                                      PUT      /forums/:id(.:format)                                         forums#update
+                                      DELETE   /forums/:id(.:format)                                         forums#destroy
+                           srv_status GET      /srv/status(.:format)                                         forums#status
+                                admin GET      /admin(.:format)                                              admin/admin#index
+                                      GET      /admin/site_settings/category/:id(.:format)                   admin/site_settings#index
+                  admin_site_settings GET      /admin/site_settings(.:format)                                admin/site_settings#index
+                                      POST     /admin/site_settings(.:format)                                admin/site_settings#create
+               new_admin_site_setting GET      /admin/site_settings/new(.:format)                            admin/site_settings#new
+              edit_admin_site_setting GET      /admin/site_settings/:id/edit(.:format)                       admin/site_settings#edit
+                   admin_site_setting GET      /admin/site_settings/:id(.:format)                            admin/site_settings#show
+                                      PATCH    /admin/site_settings/:id(.:format)                            admin/site_settings#update
+                                      PUT      /admin/site_settings/:id(.:format)                            admin/site_settings#update
+                                      DELETE   /admin/site_settings/:id(.:format)                            admin/site_settings#destroy
+                                      GET      /admin/reports/:type(.:format)                                admin/reports#show
+refresh_automatic_groups_admin_groups POST     /admin/groups/refresh_automatic_groups(.:format)              admin/groups#refresh_automatic_groups
+                    admin_group_users GET      /admin/groups/:group_id/users(.:format)                       admin/groups#users
+                         admin_groups GET      /admin/groups(.:format)                                       admin/groups#index
+                                      POST     /admin/groups(.:format)                                       admin/groups#create
+                      new_admin_group GET      /admin/groups/new(.:format)                                   admin/groups#new
+                     edit_admin_group GET      /admin/groups/:id/edit(.:format)                              admin/groups#edit
+                          admin_group GET      /admin/groups/:id(.:format)                                   admin/groups#show
+                                      PATCH    /admin/groups/:id(.:format)                                   admin/groups#update
+                                      PUT      /admin/groups/:id(.:format)                                   admin/groups#update
+                                      DELETE   /admin/groups/:id(.:format)                                   admin/groups#destroy
+                                      GET      /admin/users/list/:query(.:format)                            admin/users#index
+                                      PUT      /admin/users/approve-bulk(.:format)                           admin/users#approve_bulk
+                                      DELETE   /admin/users/reject-bulk(.:format)                            admin/users#reject_bulk
+                   admin_user_suspend PUT      /admin/users/:user_id/suspend(.:format)                       admin/users#suspend {:user_id=>/[A-Za-z0-9\_]+/}
+          admin_user_delete_all_posts PUT      /admin/users/:user_id/delete_all_posts(.:format)              admin/users#delete_all_posts {:user_id=>/[A-Za-z0-9\_]+/}
+                 admin_user_unsuspend PUT      /admin/users/:user_id/unsuspend(.:format)                     admin/users#unsuspend {:user_id=>/[A-Za-z0-9\_]+/}
+              admin_user_revoke_admin PUT      /admin/users/:user_id/revoke_admin(.:format)                  admin/users#revoke_admin {:user_id=>/[A-Za-z0-9\_]+/}
+               admin_user_grant_admin PUT      /admin/users/:user_id/grant_admin(.:format)                   admin/users#grant_admin {:user_id=>/[A-Za-z0-9\_]+/}
+          admin_user_generate_api_key POST     /admin/users/:user_id/generate_api_key(.:format)              admin/users#generate_api_key {:user_id=>/[A-Za-z0-9\_]+/}
+            admin_user_revoke_api_key DELETE   /admin/users/:user_id/revoke_api_key(.:format)                admin/users#revoke_api_key {:user_id=>/[A-Za-z0-9\_]+/}
+         admin_user_revoke_moderation PUT      /admin/users/:user_id/revoke_moderation(.:format)             admin/users#revoke_moderation {:user_id=>/[A-Za-z0-9\_]+/}
+          admin_user_grant_moderation PUT      /admin/users/:user_id/grant_moderation(.:format)              admin/users#grant_moderation {:user_id=>/[A-Za-z0-9\_]+/}
+                   admin_user_approve PUT      /admin/users/:user_id/approve(.:format)                       admin/users#approve {:user_id=>/[A-Za-z0-9\_]+/}
+          admin_user_refresh_browsers POST     /admin/users/:user_id/refresh_browsers(.:format)              admin/users#refresh_browsers {:user_id=>/[A-Za-z0-9\_]+/}
+                  admin_user_activate PUT      /admin/users/:user_id/activate(.:format)                      admin/users#activate {:user_id=>/[A-Za-z0-9\_]+/}
+                admin_user_deactivate PUT      /admin/users/:user_id/deactivate(.:format)                    admin/users#deactivate {:user_id=>/[A-Za-z0-9\_]+/}
+                     admin_user_block PUT      /admin/users/:user_id/block(.:format)                         admin/users#block {:user_id=>/[A-Za-z0-9\_]+/}
+                   admin_user_unblock PUT      /admin/users/:user_id/unblock(.:format)                       admin/users#unblock {:user_id=>/[A-Za-z0-9\_]+/}
+               admin_user_trust_level PUT      /admin/users/:user_id/trust_level(.:format)                   admin/users#trust_level {:user_id=>/[A-Za-z0-9\_]+/}
+             admin_user_primary_group PUT      /admin/users/:user_id/primary_group(.:format)                 admin/users#primary_group {:user_id=>/[A-Za-z0-9\_]+/}
+       admin_user_leader_requirements GET      /admin/users/:user_id/leader_requirements(.:format)           admin/users#leader_requirements {:user_id=>/[A-Za-z0-9\_]+/}
+                          admin_users GET      /admin/users(.:format)                                        admin/users#index
+                                      POST     /admin/users(.:format)                                        admin/users#create
+                       new_admin_user GET      /admin/users/new(.:format)                                    admin/users#new
+                      edit_admin_user GET      /admin/users/:id/edit(.:format)                               admin/users#edit {:id=>/[A-Za-z0-9\_]+/}
+                           admin_user GET      /admin/users/:id(.:format)                                    admin/users#show {:id=>/[A-Za-z0-9\_]+/}
+                                      PATCH    /admin/users/:id(.:format)                                    admin/users#update {:id=>/[A-Za-z0-9\_]+/}
+                                      PUT      /admin/users/:id(.:format)                                    admin/users#update {:id=>/[A-Za-z0-9\_]+/}
+                                      DELETE   /admin/users/:id(.:format)                                    admin/users#destroy {:id=>/[A-Za-z0-9\_]+/}
+              admin_impersonate_index GET      /admin/impersonate(.:format)                                  admin/impersonate#index
+                                      POST     /admin/impersonate(.:format)                                  admin/impersonate#create
+                new_admin_impersonate GET      /admin/impersonate/new(.:format)                              admin/impersonate#new
+               edit_admin_impersonate GET      /admin/impersonate/:id/edit(.:format)                         admin/impersonate#edit
+                    admin_impersonate GET      /admin/impersonate/:id(.:format)                              admin/impersonate#show
+                                      PATCH    /admin/impersonate/:id(.:format)                              admin/impersonate#update
+                                      PUT      /admin/impersonate/:id(.:format)                              admin/impersonate#update
+                                      DELETE   /admin/impersonate/:id(.:format)                              admin/impersonate#destroy
+               test_admin_email_index POST     /admin/email/test(.:format)                                   admin/email#test
+                all_admin_email_index GET      /admin/email/all(.:format)                                    admin/email#all
+               sent_admin_email_index GET      /admin/email/sent(.:format)                                   admin/email#sent
+            skipped_admin_email_index GET      /admin/email/skipped(.:format)                                admin/email#skipped
+                                      GET      /admin/email/preview-digest(.:format)                         admin/email#preview_digest
+                    admin_email_index GET      /admin/email(.:format)                                        admin/email#index
+                                      POST     /admin/email(.:format)                                        admin/email#create
+                      new_admin_email GET      /admin/email/new(.:format)                                    admin/email#new
+                     edit_admin_email GET      /admin/email/:id/edit(.:format)                               admin/email#edit
+                          admin_email GET      /admin/email/:id(.:format)                                    admin/email#show
+                                      PATCH    /admin/email/:id(.:format)                                    admin/email#update
+                                      PUT      /admin/email/:id(.:format)                                    admin/email#update
+                                      DELETE   /admin/email/:id(.:format)                                    admin/email#destroy
+              admin_staff_action_logs GET      /admin/logs/staff_action_logs(.:format)                       admin/staff_action_logs#index
+                admin_screened_emails GET      /admin/logs/screened_emails(.:format)                         admin/screened_emails#index
+          admin_screened_ip_addresses GET      /admin/logs/screened_ip_addresses(.:format)                   admin/screened_ip_addresses#index
+                                      POST     /admin/logs/screened_ip_addresses(.:format)                   admin/screened_ip_addresses#create
+            admin_screened_ip_address PATCH    /admin/logs/screened_ip_addresses/:id(.:format)               admin/screened_ip_addresses#update
+                                      PUT      /admin/logs/screened_ip_addresses/:id(.:format)               admin/screened_ip_addresses#update
+                                      DELETE   /admin/logs/screened_ip_addresses/:id(.:format)               admin/screened_ip_addresses#destroy
+                  admin_screened_urls GET      /admin/logs/screened_urls(.:format)                           admin/screened_urls#index
+                      admin_customize GET      /admin/customize(.:format)                                    admin/site_customizations#index
+                          admin_flags GET      /admin/flags(.:format)                                        admin/flags#index
+                                      GET      /admin/flags/:filter(.:format)                                admin/flags#index
+                                      POST     /admin/flags/agree/:id(.:format)                              admin/flags#agree
+                                      POST     /admin/flags/disagree/:id(.:format)                           admin/flags#disagree
+                                      POST     /admin/flags/defer/:id(.:format)                              admin/flags#defer
+            admin_site_customizations GET      /admin/site_customizations(.:format)                          admin/site_customizations#index
+                                      POST     /admin/site_customizations(.:format)                          admin/site_customizations#create
+         new_admin_site_customization GET      /admin/site_customizations/new(.:format)                      admin/site_customizations#new
+        edit_admin_site_customization GET      /admin/site_customizations/:id/edit(.:format)                 admin/site_customizations#edit
+             admin_site_customization GET      /admin/site_customizations/:id(.:format)                      admin/site_customizations#show
+                                      PATCH    /admin/site_customizations/:id(.:format)                      admin/site_customizations#update
+                                      PUT      /admin/site_customizations/:id(.:format)                      admin/site_customizations#update
+                                      DELETE   /admin/site_customizations/:id(.:format)                      admin/site_customizations#destroy
+                  admin_site_contents GET      /admin/site_contents(.:format)                                admin/site_contents#index
+                                      POST     /admin/site_contents(.:format)                                admin/site_contents#create
+               new_admin_site_content GET      /admin/site_contents/new(.:format)                            admin/site_contents#new
+              edit_admin_site_content GET      /admin/site_contents/:id/edit(.:format)                       admin/site_contents#edit
+                   admin_site_content GET      /admin/site_contents/:id(.:format)                            admin/site_contents#show
+                                      PATCH    /admin/site_contents/:id(.:format)                            admin/site_contents#update
+                                      PUT      /admin/site_contents/:id(.:format)                            admin/site_contents#update
+                                      DELETE   /admin/site_contents/:id(.:format)                            admin/site_contents#destroy
+             admin_site_content_types GET      /admin/site_content_types(.:format)                           admin/site_content_types#index
+                                      POST     /admin/site_content_types(.:format)                           admin/site_content_types#create
+          new_admin_site_content_type GET      /admin/site_content_types/new(.:format)                       admin/site_content_types#new
+         edit_admin_site_content_type GET      /admin/site_content_types/:id/edit(.:format)                  admin/site_content_types#edit
+              admin_site_content_type GET      /admin/site_content_types/:id(.:format)                       admin/site_content_types#show
+                                      PATCH    /admin/site_content_types/:id(.:format)                       admin/site_content_types#update
+                                      PUT      /admin/site_content_types/:id(.:format)                       admin/site_content_types#update
+                                      DELETE   /admin/site_content_types/:id(.:format)                       admin/site_content_types#destroy
+                  admin_version_check GET      /admin/version_check(.:format)                                admin/versions#show
+       problems_admin_dashboard_index GET      /admin/dashboard/problems(.:format)                           admin/dashboard#problems
+                admin_dashboard_index GET      /admin/dashboard(.:format)                                    admin/dashboard#index
+                  key_admin_api_index POST     /admin/api/key(.:format)                                      admin/api#create_master_key
+                                      PUT      /admin/api/key(.:format)                                      admin/api#regenerate_key
+                                      DELETE   /admin/api/key(.:format)                                      admin/api#revoke_key
+                      admin_api_index GET      /admin/api(.:format)                                          admin/api#index
+                                      GET      /admin/backups/:id(.:format)                                  admin/backups#show {:id=>/\d{4}(-\d{2}){2}-\d{6}\.tar\.gz/i}
+                                      DELETE   /admin/backups/:id(.:format)                                  admin/backups#destroy {:id=>/\d{4}(-\d{2}){2}-\d{6}\.tar\.gz/i}
+                 restore_admin_backup POST     /admin/backups/:id/restore(.:format)                          admin/backups#restore {:id=>/\d{4}(-\d{2}){2}-\d{6}\.tar\.gz/i}
+                   logs_admin_backups GET      /admin/backups/logs(.:format)                                 admin/backups#logs
+                 status_admin_backups GET      /admin/backups/status(.:format)                               admin/backups#status
+                 cancel_admin_backups GET      /admin/backups/cancel(.:format)                               admin/backups#cancel
+               rollback_admin_backups GET      /admin/backups/rollback(.:format)                             admin/backups#rollback
+               readonly_admin_backups PUT      /admin/backups/readonly(.:format)                             admin/backups#readonly
+                        admin_backups GET      /admin/backups(.:format)                                      admin/backups#index
+                                      POST     /admin/backups(.:format)                                      admin/backups#create
+                   admin_memory_stats GET      /admin/memory_stats(.:format)                                 admin/diagnostics#memory_stats
+           email_preferences_redirect GET      /email_preferences(.:format)                                  email#preferences_redirect
+                    email_unsubscribe GET      /email/unsubscribe/:key(.:format)                             email#unsubscribe
+                    email_resubscribe POST     /email/resubscribe/:key(.:format)                             email#resubscribe
+        forgot_password_session_index POST     /session/forgot_password(.:format)                            session#forgot_password
+                        session_index POST     /session(.:format)                                            session#create
+                              session DELETE   /session/:id(.:format)                                        session#destroy {:id=>/[A-Za-z0-9\_]+/}
+                      session_current GET      /session/current(.:format)                                    session#current
+                         session_csrf GET      /session/csrf(.:format)                                       session#csrf
+                                      GET      /composer-messages(.:format)                                  composer_messages#index
+                 check_username_users GET      /users/check_username(.:format)                               users#check_username
+              is_local_username_users GET      /users/is_local_username(.:format)                            users#is_local_username
+                                users GET      /users(.:format)                                              users#index
+                                      POST     /users(.:format)                                              users#create
+                             new_user GET      /users/new(.:format)                                          users#new
+                            edit_user GET      /users/:id/edit(.:format)                                     users#edit
+                         static_index GET      /static(.:format)                                             static#index
+                                      POST     /static(.:format)                                             static#create
+                           new_static GET      /static/new(.:format)                                         static#new
+                          edit_static GET      /static/:id/edit(.:format)                                    static#edit
+                               static GET      /static/:id(.:format)                                         static#show
+                                      PATCH    /static/:id(.:format)                                         static#update
+                                      PUT      /static/:id(.:format)                                         static#update
+                                      DELETE   /static/:id(.:format)                                         static#destroy
+                                login POST     /login(.:format)                                              static#enter
+                                      GET      /login(.:format)                                              static#show {:id=>"login"}
+                                  faq GET      /faq(.:format)                                                static#show {:id=>"faq"}
+                                  tos GET      /tos(.:format)                                                static#show {:id=>"tos"}
+                              privacy GET      /privacy(.:format)                                            static#show {:id=>"privacy"}
+                   users_search_users GET      /users/search/users(.:format)                                 users#search_users
+                                      GET      /users/password-reset/:token(.:format)                        users#password_reset
+                                      PUT      /users/password-reset/:token(.:format)                        users#password_reset
+                                      GET      /users/activate-account/:token(.:format)                      users#activate_account
+                                      GET      /users/authorize-email/:token(.:format)                       users#authorize_email
+                             users_hp GET      /users/hp(.:format)                                           users#get_honeypot_value
+                     user_preferences GET      /user_preferences(.:format)                                   users#user_preferences_redirect
+                                      GET      /users/:username/private-messages(.:format)                   user_actions#private_messages {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/private-messages/:filter(.:format)           user_actions#private_messages {:username=>/[A-Za-z0-9\_]+/}
+                             userpage GET      /users/:username(.:format)                                    users#show {:username=>/[A-Za-z0-9\_]+/}
+                                      PUT      /users/:username(.:format)                                    users#update {:username=>/[A-Za-z0-9\_]+/}
+                    email_preferences GET      /users/:username/preferences(.:format)                        users#preferences {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/preferences/email(.:format)                  users#preferences {:username=>/[A-Za-z0-9\_]+/}
+                                      PUT      /users/:username/preferences/email(.:format)                  users#change_email {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/preferences/about-me(.:format)               users#preferences {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/preferences/username(.:format)               users#preferences {:username=>/[A-Za-z0-9\_]+/}
+                                      PUT      /users/:username/preferences/username(.:format)               users#username {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/avatar(/:size)(.:format)                     users#avatar {:username=>/[A-Za-z0-9\_]+/}
+                                      POST     /users/:username/preferences/avatar(.:format)                 users#upload_avatar {:username=>/[A-Za-z0-9\_]+/}
+                                      PUT      /users/:username/preferences/avatar/toggle(.:format)          users#toggle_avatar {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/invited(.:format)                            users#invited {:username=>/[A-Za-z0-9\_]+/}
+                                      POST     /users/:username/send_activation_email(.:format)              users#send_activation_email {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/activity(.:format)                           users#show {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /users/:username/activity/:filter(.:format)                   users#show {:username=>/[A-Za-z0-9\_]+/}
+                                      DELETE   /users/:username(.:format)                                    users#destroy {:username=>/[A-Za-z0-9\_]+/}
+                                      GET      /uploads/:site/:id/:sha.:extension(.:format)                  uploads#show {:site=>/\w+/, :id=>/\d+/, :sha=>/[a-z0-9]{15,16}/i, :extension=>/\w{2,}/}
+                              uploads POST     /uploads(.:format)                                            uploads#create
+                                      GET      /posts/by_number/:topic_id/:post_number(.:format)             posts#by_number
+                                      GET      /posts/:id/reply-history(.:format)                            posts#reply_history
+                        group_members GET      /groups/:group_id/members(.:format)                           groups#members
+                          group_posts GET      /groups/:group_id/posts(.:format)                             groups#posts
+                    group_posts_count GET      /groups/:group_id/posts_count(.:format)                       groups#posts_count
+                               groups GET      /groups(.:format)                                             groups#index
+                                      POST     /groups(.:format)                                             groups#create
+                            new_group GET      /groups/new(.:format)                                         groups#new
+                           edit_group GET      /groups/:id/edit(.:format)                                    groups#edit
+                                group GET      /groups/:id(.:format)                                         groups#show
+                                      PATCH    /groups/:id(.:format)                                         groups#update
+                                      PUT      /groups/:id(.:format)                                         groups#update
+                                      DELETE   /groups/:id(.:format)                                         groups#destroy
+                        post_bookmark PUT      /posts/:post_id/bookmark(.:format)                            posts#bookmark
+                         post_replies GET      /posts/:post_id/replies(.:format)                             posts#replies
+                                      GET      /posts/:post_id/revisions/:revision(.:format)                 posts#revisions
+                         post_recover PUT      /posts/:post_id/recover(.:format)                             posts#recover
+                   destroy_many_posts DELETE   /posts/destroy_many(.:format)                                 posts#destroy_many
+                                posts GET      /posts(.:format)                                              posts#index
+                                      POST     /posts(.:format)                                              posts#create
+                             new_post GET      /posts/new(.:format)                                          posts#new
+                            edit_post GET      /posts/:id/edit(.:format)                                     posts#edit
+                                 post GET      /posts/:id(.:format)                                          posts#show
+                                      PATCH    /posts/:id(.:format)                                          posts#update
+                                      PUT      /posts/:id(.:format)                                          posts#update
+                                      DELETE   /posts/:id(.:format)                                          posts#destroy
+                                      GET      /p/:post_id/:user_id(.:format)                                posts#short_link
+                        notifications GET      /notifications(.:format)                                      notifications#index
+                                      POST     /notifications(.:format)                                      notifications#create
+                     new_notification GET      /notifications/new(.:format)                                  notifications#new
+                    edit_notification GET      /notifications/:id/edit(.:format)                             notifications#edit
+                         notification GET      /notifications/:id(.:format)                                  notifications#show
+                                      PATCH    /notifications/:id(.:format)                                  notifications#update
+                                      PUT      /notifications/:id(.:format)                                  notifications#update
+                                      DELETE   /notifications/:id(.:format)                                  notifications#destroy
+                                      GET|POST /auth/:provider/callback(.:format)                            users/omniauth_callbacks#complete
+                         auth_failure GET|POST /auth/failure(.:format)                                       users/omniauth_callbacks#failure
+                         track_clicks GET      /clicks/track(.:format)                                       clicks#track
+                               clicks GET      /clicks(.:format)                                             clicks#index
+                                      POST     /clicks(.:format)                                             clicks#create
+                            new_click GET      /clicks/new(.:format)                                         clicks#new
+                           edit_click GET      /clicks/:id/edit(.:format)                                    clicks#edit
+                                click GET      /clicks/:id(.:format)                                         clicks#show
+                                      PATCH    /clicks/:id(.:format)                                         clicks#update
+                                      PUT      /clicks/:id(.:format)                                         clicks#update
+                                      DELETE   /clicks/:id(.:format)                                         clicks#destroy
+                              excerpt GET      /excerpt(.:format)                                            excerpt#show
+                   users_post_actions GET      /post_actions/users(.:format)                                 post_actions#users
+             clear_flags_post_actions POST     /post_actions/clear_flags(.:format)                           post_actions#clear_flags
+                         post_actions GET      /post_actions(.:format)                                       post_actions#index
+                                      POST     /post_actions(.:format)                                       post_actions#create
+                      new_post_action GET      /post_actions/new(.:format)                                   post_actions#new
+                     edit_post_action GET      /post_actions/:id/edit(.:format)                              post_actions#edit
+                          post_action GET      /post_actions/:id(.:format)                                   post_actions#show
+                                      PATCH    /post_actions/:id(.:format)                                   post_actions#update
+                                      PUT      /post_actions/:id(.:format)                                   post_actions#update
+                                      DELETE   /post_actions/:id(.:format)                                   post_actions#destroy
+                         user_actions GET      /user_actions(.:format)                                       user_actions#index
+                                      POST     /user_actions(.:format)                                       user_actions#create
+                      new_user_action GET      /user_actions/new(.:format)                                   user_actions#new
+                     edit_user_action GET      /user_actions/:id/edit(.:format)                              user_actions#edit
+                          user_action GET      /user_actions/:id(.:format)                                   user_actions#show
+                                      PATCH    /user_actions/:id(.:format)                                   user_actions#update
+                                      PUT      /user_actions/:id(.:format)                                   user_actions#update
+                                      DELETE   /user_actions/:id(.:format)                                   user_actions#destroy
+                              popular GET      /popular(.:format)                                            list#popular_redirect
+                         popular_more GET      /popular/more(.:format)                                       list#popular_redirect
+                           categories GET      /categories(.:format)                                         categories#index
+                                      POST     /categories(.:format)                                         categories#create
+                         new_category GET      /categories/new(.:format)                                     categories#new
+                        edit_category GET      /categories/:id/edit(.:format)                                categories#edit
+                             category PATCH    /categories/:id(.:format)                                     categories#update
+                                      PUT      /categories/:id(.:format)                                     categories#update
+                                      DELETE   /categories/:id(.:format)                                     categories#destroy
+                                      GET      /category/:id/show(.:format)                                  categories#show
+                                      POST     /category/:category_id/move(.:format)                         categories#move
+                                      GET      /category/:category.rss(.:format)                             list#category_feed
+                                      GET      /category/:parent_category/:category.rss(.:format)            list#category_feed
+                                      GET      /category/:category(.:format)                                 list#category_latest
+                                      GET      /category/:category/none(.:format)                            list#category_none_latest
+                                      GET      /category/:parent_category/:category(.:format)                list#parent_category_category_latest
+                                  top GET      /top(.:format)                                                list#top
+                         category_top GET      /category/:category/l/top(.:format)                           list#category_top
+                    category_none_top GET      /category/:category/none/l/top(.:format)                      list#category_none_top
+         parent_category_category_top GET      /category/:parent_category/:category/l/top(.:format)          list#parent_category_category_top
+                           top_yearly GET      /top/yearly(.:format)                                         list#top_yearly
+                  category_top_yearly GET      /category/:category/l/top/yearly(.:format)                    list#category_top_yearly
+             category_none_top_yearly GET      /category/:category/none/l/top/yearly(.:format)               list#category_none_top_yearly
+  parent_category_category_top_yearly GET      /category/:parent_category/:category/l/top/yearly(.:format)   list#parent_category_category_top_yearly
+                          top_monthly GET      /top/monthly(.:format)                                        list#top_monthly
+                 category_top_monthly GET      /category/:category/l/top/monthly(.:format)                   list#category_top_monthly
+            category_none_top_monthly GET      /category/:category/none/l/top/monthly(.:format)              list#category_none_top_monthly
+ parent_category_category_top_monthly GET      /category/:parent_category/:category/l/top/monthly(.:format)  list#parent_category_category_top_monthly
+                           top_weekly GET      /top/weekly(.:format)                                         list#top_weekly
+                  category_top_weekly GET      /category/:category/l/top/weekly(.:format)                    list#category_top_weekly
+             category_none_top_weekly GET      /category/:category/none/l/top/weekly(.:format)               list#category_none_top_weekly
+  parent_category_category_top_weekly GET      /category/:parent_category/:category/l/top/weekly(.:format)   list#parent_category_category_top_weekly
+                            top_daily GET      /top/daily(.:format)                                          list#top_daily
+                   category_top_daily GET      /category/:category/l/top/daily(.:format)                     list#category_top_daily
+              category_none_top_daily GET      /category/:category/none/l/top/daily(.:format)                list#category_none_top_daily
+   parent_category_category_top_daily GET      /category/:parent_category/:category/l/top/daily(.:format)    list#parent_category_category_top_daily
+                                      GET      /latest.rss(.:format)                                         list#latest_feed
+                               latest GET      /latest(.:format)                                             list#latest
+                          latest_more GET      /latest/more(.:format)                                        list#latest
+                      category_latest GET      /category/:category/l/latest(.:format)                        list#category_latest
+                                      GET      /category/:category/l/latest/more(.:format)                   list#category_latest
+                 category_none_latest GET      /category/:category/none/l/latest(.:format)                   list#category_none_latest
+                                      GET      /category/:category/none/l/latest/more(.:format)              list#category_none_latest
+      parent_category_category_latest GET      /category/:parent_category/:category/l/latest(.:format)       list#parent_category_category_latest
+                                      GET      /category/:parent_category/:category/l/latest/more(.:format)  list#parent_category_category_latest
+                               unread GET      /unread(.:format)                                             list#unread
+                          unread_more GET      /unread/more(.:format)                                        list#unread
+                      category_unread GET      /category/:category/l/unread(.:format)                        list#category_unread
+                                      GET      /category/:category/l/unread/more(.:format)                   list#category_unread
+                 category_none_unread GET      /category/:category/none/l/unread(.:format)                   list#category_none_unread
+                                      GET      /category/:category/none/l/unread/more(.:format)              list#category_none_unread
+      parent_category_category_unread GET      /category/:parent_category/:category/l/unread(.:format)       list#parent_category_category_unread
+                                      GET      /category/:parent_category/:category/l/unread/more(.:format)  list#parent_category_category_unread
+                                  new GET      /new(.:format)                                                list#new
+                             new_more GET      /new/more(.:format)                                           list#new
+                         category_new GET      /category/:category/l/new(.:format)                           list#category_new
+                                      GET      /category/:category/l/new/more(.:format)                      list#category_new
+                    category_none_new GET      /category/:category/none/l/new(.:format)                      list#category_none_new
+                                      GET      /category/:category/none/l/new/more(.:format)                 list#category_none_new
+         parent_category_category_new GET      /category/:parent_category/:category/l/new(.:format)          list#parent_category_category_new
+                                      GET      /category/:parent_category/:category/l/new/more(.:format)     list#parent_category_category_new
+                              starred GET      /starred(.:format)                                            list#starred
+                         starred_more GET      /starred/more(.:format)                                       list#starred
+                     category_starred GET      /category/:category/l/starred(.:format)                       list#category_starred
+                                      GET      /category/:category/l/starred/more(.:format)                  list#category_starred
+                category_none_starred GET      /category/:category/none/l/starred(.:format)                  list#category_none_starred
+                                      GET      /category/:category/none/l/starred/more(.:format)             list#category_none_starred
+     parent_category_category_starred GET      /category/:parent_category/:category/l/starred(.:format)      list#parent_category_category_starred
+                                      GET      /category/:parent_category/:category/l/starred/more(.:format) list#parent_category_category_starred
+                                 read GET      /read(.:format)                                               list#read
+                            read_more GET      /read/more(.:format)                                          list#read
+                        category_read GET      /category/:category/l/read(.:format)                          list#category_read
+                                      GET      /category/:category/l/read/more(.:format)                     list#category_read
+                   category_none_read GET      /category/:category/none/l/read(.:format)                     list#category_none_read
+                                      GET      /category/:category/none/l/read/more(.:format)                list#category_none_read
+        parent_category_category_read GET      /category/:parent_category/:category/l/read(.:format)         list#parent_category_category_read
+                                      GET      /category/:parent_category/:category/l/read/more(.:format)    list#parent_category_category_read
+                               posted GET      /posted(.:format)                                             list#posted
+                          posted_more GET      /posted/more(.:format)                                        list#posted
+                      category_posted GET      /category/:category/l/posted(.:format)                        list#category_posted
+                                      GET      /category/:category/l/posted/more(.:format)                   list#category_posted
+                 category_none_posted GET      /category/:category/none/l/posted(.:format)                   list#category_none_posted
+                                      GET      /category/:category/none/l/posted/more(.:format)              list#category_none_posted
+      parent_category_category_posted GET      /category/:parent_category/:category/l/posted(.:format)       list#parent_category_category_posted
+                                      GET      /category/:parent_category/:category/l/posted/more(.:format)  list#parent_category_category_posted
+                               search GET      /search(.:format)                                             search#query
+                                      GET      /t/:id(.:format)                                              topics#show
+                                    t POST     /t(.:format)                                                  topics#create
+                                      PUT      /t/:id(.:format)                                              topics#update
+                                      DELETE   /t/:id(.:format)                                              topics#destroy
+                          topics_bulk PUT      /topics/bulk(.:format)                                        topics#bulk
+                       topics_timings POST     /topics/timings(.:format)                                     topics#timings
+                    topics_similar_to GET      /topics/similar_to(.:format)                                  topics#similar_to
+                            topics_by GET      /topics/created-by/:username(.:format)                        list#topics_by {:username=>/[A-Za-z0-9\_]+/}
+              topics_private_messages GET      /topics/private-messages/:username(.:format)                  list#private_messages {:username=>/[A-Za-z0-9\_]+/}
+         topics_private_messages_sent GET      /topics/private-messages-sent/:username(.:format)             list#private_messages_sent {:username=>/[A-Za-z0-9\_]+/}
+       topics_private_messages_unread GET      /topics/private-messages-unread/:username(.:format)           list#private_messages_unread {:username=>/[A-Za-z0-9\_]+/}
+                       embed_comments GET      /embed/comments(.:format)                                     embed#comments
+                          embed_count GET      /embed/count(.:format)                                        embed#count
+                                      GET      /t/:slug/:topic_id/wordpress(.:format)                        topics#wordpress {:topic_id=>/\d+/}
+                                      GET      /t/:slug/:topic_id/moderator-liked(.:format)                  topics#moderator_liked {:topic_id=>/\d+/}
+                                      GET      /t/:topic_id/wordpress(.:format)                              topics#wordpress {:topic_id=>/\d+/}
+                                      GET      /t/:slug/:topic_id/summary(.:format)                          topics#show {:topic_id=>/\d+/, :summary=>true}
+                                      GET      /t/:topic_id/summary(.:format)                                topics#show {:topic_id=>/\d+/}
+                                      PUT      /t/:slug/:topic_id(.:format)                                  topics#update {:topic_id=>/\d+/}
+                                      PUT      /t/:slug/:topic_id/star(.:format)                             topics#star {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/star(.:format)                                   topics#star {:topic_id=>/\d+/}
+                                      PUT      /t/:slug/:topic_id/status(.:format)                           topics#status {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/status(.:format)                                 topics#status {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/clear-pin(.:format)                              topics#clear_pin {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/mute(.:format)                                   topics#mute {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/unmute(.:format)                                 topics#unmute {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/autoclose(.:format)                              topics#autoclose {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/remove-allowed-user(.:format)                    topics#remove_allowed_user {:topic_id=>/\d+/}
+                                      PUT      /t/:topic_id/recover(.:format)                                topics#recover {:topic_id=>/\d+/}
+                                      GET      /t/:topic_id/:post_number(.:format)                           topics#show {:topic_id=>/\d+/, :post_number=>/\d+/}
+                                      GET      /t/:topic_id/last(.:format)                                   topics#show {:topic_id=>/\d+/, :post_number=>99999999}
+                                      GET      /t/:slug/:topic_id.rss(.:format)                              topics#feed {:topic_id=>/\d+/}
+                                      GET      /t/:slug/:topic_id(.:format)                                  topics#show {:topic_id=>/\d+/}
+                                      GET      /t/:slug/:topic_id/:post_number(.:format)                     topics#show {:topic_id=>/\d+/, :post_number=>/\d+/}
+                                      GET      /t/:slug/:topic_id/last(.:format)                             topics#show {:topic_id=>/\d+/, :post_number=>99999999}
+                                      GET      /t/:topic_id/posts(.:format)                                  topics#posts {:topic_id=>/\d+/}
+                                      POST     /t/:topic_id/timings(.:format)                                topics#timings {:topic_id=>/\d+/}
+                                      POST     /t/:topic_id/invite(.:format)                                 topics#invite {:topic_id=>/\d+/}
+                                      POST     /t/:topic_id/move-posts(.:format)                             topics#move_posts {:topic_id=>/\d+/}
+                                      POST     /t/:topic_id/merge-topic(.:format)                            topics#merge_topic {:topic_id=>/\d+/}
+                                      DELETE   /t/:topic_id/timings(.:format)                                topics#destroy_timings {:topic_id=>/\d+/}
+                                      POST     /t/:topic_id/notifications(.:format)                          topics#set_notifications {:topic_id=>/\d+/}
+                                      GET      /raw/:topic_id(/:post_number)(.:format)                       posts#markdown
+                              invites GET      /invites(.:format)                                            invites#index
+                                      POST     /invites(.:format)                                            invites#create
+                           new_invite GET      /invites/new(.:format)                                        invites#new
+                          edit_invite GET      /invites/:id/edit(.:format)                                   invites#edit
+                               invite GET      /invites/:id(.:format)                                        invites#show
+                                      PATCH    /invites/:id(.:format)                                        invites#update
+                                      PUT      /invites/:id(.:format)                                        invites#update
+                                      DELETE   /invites/:id(.:format)                                        invites#destroy
+                                      DELETE   /invites(.:format)                                            invites#destroy
+                               onebox GET      /onebox(.:format)                                             onebox#show
+                                error GET      /error(.:format)                                              forums#error
+                                      GET      /message-bus/poll(.:format)                                   message_bus#poll
+                                draft GET      /draft(.:format)                                              draft#show
+                                      POST     /draft(.:format)                                              draft#update
+                                      DELETE   /draft(.:format)                                              draft#destroy
+                                      GET      /robots.txt(.:format)                                         robots_txt#index
+                          list_latest GET      /                                                             list#latest
+                          list_unread GET      /                                                             list#unread
+                             list_new GET      /                                                             list#new
+                         list_starred GET      /                                                             list#starred
+                            list_read GET      /                                                             list#read
+                          list_posted GET      /                                                             list#posted
+                     categories_index GET      /                                                             categories#index
+                            top_lists GET      /                                                             list#top

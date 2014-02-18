@@ -308,8 +308,77 @@ public class MyWebClient {
 	}
 	
 	// --- DELETE ---
-	// TODO: implement HTTP DELETE
-
+	public String delete(String methodName, Map<String, String> parameters){
+		List<RequestParameter> requestParams = new LinkedList<RequestParameter>();
+		for (String key : parameters.keySet()) {
+			requestParams.add( new StringRequestParameter(key, parameters.get(key)) );
+		}
+		return delete(methodName, requestParams);
+	}
+	/*public String delete(String methodName, List<RequestParameter> requestParams){
+		return delete( methodName, getJsonFromParams(requestParams) );
+	}
+	public String delete(String methodName, String jsonBodyStr){*/
+	public String delete(String methodName, List<RequestParameter> requestParams){
+		String responseStr = "";
+		String requestUrl;
+		if (methodName.startsWith(webServiceUrl)) {
+			requestUrl = methodName;
+		} else {
+			requestUrl = webServiceUrl + methodName;
+		}
+		
+		httpDelete = new HttpDelete(requestUrl);
+		httpDelete.setConfig(httpRequestConfig);
+		for (RequestHeader requestHeader:requestHeaders) {
+			httpDelete.addHeader(requestHeader.getKey(), requestHeader.getValue());
+		}
+		httpDelete.addHeader("Accept", "text/html,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5");
+		
+		
+		/*
+		URI uri = new URIBuilder()
+	        .setScheme("http")
+	        .setHost("www.google.com")
+	        .setPath("/search")
+	        .setParameter("q", "httpclient")
+	        .setParameter("btnG", "Google Search")
+	        .setParameter("aq", "f")
+	        .setParameter("oq", "")
+	        .build();
+		HttpGet httpget = new HttpGet(uri);
+		 */
+		/* 
+		StringEntity requestEntity = new StringEntity( 
+				jsonBodyStr
+				, ContentType.create("application/json", "UTF-8")
+				);
+		httpDelete.setEntity(requestEntity);
+		*/
+		
+		
+		try {
+			httpResponse = httpClient.execute(httpDelete);
+			httpResponseCode = httpResponse.getStatusLine().getStatusCode(); 
+			HttpEntity responseEntity = httpResponse.getEntity();
+			if (httpResponseCode >= 200 && httpResponseCode < 300) {
+				responseStr = responseEntity!=null ? EntityUtils.toString(responseEntity) : "";
+            } else {
+                //throw new ClientProtocolException("Unexpected response status: " + status);
+            	responseStr = httpResponseCode + "|"+"ERROR";
+            }
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try { httpResponse.close(); } catch (Exception ex){}
+		}
+		
+		
+		return responseStr;
+	}
 
 	// util funcs
 	public String getJsonFromParams(Map<String, String> parameters) {

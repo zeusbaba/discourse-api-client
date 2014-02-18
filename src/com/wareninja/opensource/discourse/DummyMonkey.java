@@ -25,8 +25,42 @@ public class DummyMonkey {
 				, args[2] // api_username  you make calls on behalf of
 				);
 		
-		Map<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = null;
 		
+		
+		
+		/*
+		// createUser parameters MUST already contain
+		'name': name,
+	    'email': email,
+	    'username': username,
+	    'password': password,
+	    */
+		parameters = new HashMap<String, String>();
+		parameters.put("name", "test_monkey_1");
+		parameters.put("email", "test_monkey_1@dummy.com");
+		parameters.put("username", "test_monkey_1");
+		parameters.put("password", "test_monkey_1_pwd");
+		mDiscourseApiClient.createUser(parameters, new ResponseListener(){
+
+			@Override
+			public void onBegin(String info) {
+				System.out.println("info: "+info);
+			}
+			@Override
+			public void onComplete_wModel(ResponseModel responseModel) {
+				// successful result
+				System.out.println("SUCCESS! -> " + responseModel.toString());
+			}
+
+			@Override
+			public void onError_wMeta(ResponseMeta responseMeta) {
+				// error
+				System.out.println("ERROR! -> " + responseMeta.toString());
+			}
+		});
+		
+		parameters = new HashMap<String, String>();
 		mDiscourseApiClient.getUser(parameters, new ResponseListener(){
 
 			@Override

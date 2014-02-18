@@ -1,0 +1,511 @@
+# Extracted using https://github.com/nicooga/color_routes 
+#	RAILS_ENV=production bundle exec rake routes >> myroutes_colored.txt
+
+[1;30m
+CONTROLLER: [1;37mexceptions[0m
+[1;36m                                     [0m | [1;33mGET|POST[0m | [1;31m/404([1;34m.:format[1;31m)                                               [0m | [1;37mnot_found                           [0m
+[1;30m
+CONTROLLER: [1;37m[0m
+[1;36m                          sidekiq_web[0m | [1;33m      [0m | [1;31m/sidekiq                                                     [0m | [1;37m                                    [0m
+[1;30m
+CONTROLLER: [1;37msite[0m
+[1;36m                                 site[0m | [1;33m GET  [0m | [1;31m/site([1;34m.:format[1;31m)                                              [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37mforums[0m
+[1;36m                               forums[0m | [1;33m GET  [0m | [1;31m/forums([1;34m.:format[1;31m)                                            [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/forums([1;34m.:format[1;31m)                                            [0m | [1;37mcreate                              [0m
+[1;36m                            new_forum[0m | [1;33m GET  [0m | [1;31m/forums/new([1;34m.:format[1;31m)                                        [0m | [1;37mnew                                 [0m
+[1;36m                           edit_forum[0m | [1;33m GET  [0m | [1;31m/forums/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                   [0m | [1;37medit                                [0m
+[1;36m                                forum[0m | [1;33m GET  [0m | [1;31m/forums/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/forums/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/forums/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/forums/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mdestroy                             [0m
+[1;36m                           srv_status[0m | [1;33m GET  [0m | [1;31m/srv/status([1;34m.:format[1;31m)                                        [0m | [1;37mstatus                              [0m
+[1;36m                                error[0m | [1;33m GET  [0m | [1;31m/error([1;34m.:format[1;31m)                                             [0m | [1;37merror                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/admin[0m
+[1;36m                                admin[0m | [1;33m GET  [0m | [1;31m/admin([1;34m.:format[1;31m)                                             [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/site_settings[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/admin/site_settings/category/[1;34m:id[1;31m([1;34m.:format[1;31m)                  [0m | [1;37mindex                               [0m
+[1;36m                  admin_site_settings[0m | [1;33m GET  [0m | [1;31m/admin/site_settings([1;34m.:format[1;31m)                               [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/site_settings([1;34m.:format[1;31m)                               [0m | [1;37mcreate                              [0m
+[1;36m               new_admin_site_setting[0m | [1;33m GET  [0m | [1;31m/admin/site_settings/new([1;34m.:format[1;31m)                           [0m | [1;37mnew                                 [0m
+[1;36m              edit_admin_site_setting[0m | [1;33m GET  [0m | [1;31m/admin/site_settings/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                      [0m | [1;37medit                                [0m
+[1;36m                   admin_site_setting[0m | [1;33m GET  [0m | [1;31m/admin/site_settings/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/site_settings/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/site_settings/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/site_settings/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/reports[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/admin/reports/[1;34m:type[1;31m([1;34m.:format[1;31m)                               [0m | [1;37mshow                                [0m
+[1;30m
+CONTROLLER: [1;37madmin/groups[0m
+[1;36mrefresh_automatic_groups_admin_groups[0m | [1;33m POST [0m | [1;31m/admin/groups/refresh_automatic_groups([1;34m.:format[1;31m)             [0m | [1;37mrefresh_automatic_groups            [0m
+[1;36m                    admin_group_users[0m | [1;33m GET  [0m | [1;31m/admin/groups/[1;34m:group_id[1;31m/users([1;34m.:format[1;31m)                      [0m | [1;37musers                               [0m
+[1;36m                         admin_groups[0m | [1;33m GET  [0m | [1;31m/admin/groups([1;34m.:format[1;31m)                                      [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/groups([1;34m.:format[1;31m)                                      [0m | [1;37mcreate                              [0m
+[1;36m                      new_admin_group[0m | [1;33m GET  [0m | [1;31m/admin/groups/new([1;34m.:format[1;31m)                                  [0m | [1;37mnew                                 [0m
+[1;36m                     edit_admin_group[0m | [1;33m GET  [0m | [1;31m/admin/groups/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                             [0m | [1;37medit                                [0m
+[1;36m                          admin_group[0m | [1;33m GET  [0m | [1;31m/admin/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/users[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/admin/users/list/[1;34m:query[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/users/approve-bulk([1;34m.:format[1;31m)                          [0m | [1;37mapprove_bulk                        [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/users/reject-bulk([1;34m.:format[1;31m)                           [0m | [1;37mreject_bulk                         [0m
+[1;36m                   admin_user_suspend[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/suspend([1;34m.:format[1;31m)                      [0m | [1;37msuspend                             [0m
+[1;36m          admin_user_delete_all_posts[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/delete_all_posts([1;34m.:format[1;31m)             [0m | [1;37mdelete_all_posts                    [0m
+[1;36m                 admin_user_unsuspend[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/unsuspend([1;34m.:format[1;31m)                    [0m | [1;37munsuspend                           [0m
+[1;36m              admin_user_revoke_admin[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/revoke_admin([1;34m.:format[1;31m)                 [0m | [1;37mrevoke_admin                        [0m
+[1;36m               admin_user_grant_admin[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/grant_admin([1;34m.:format[1;31m)                  [0m | [1;37mgrant_admin                         [0m
+[1;36m          admin_user_generate_api_key[0m | [1;33m POST [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/generate_api_key([1;34m.:format[1;31m)             [0m | [1;37mgenerate_api_key                    [0m
+[1;36m            admin_user_revoke_api_key[0m | [1;33mDELETE[0m | [1;31m/admin/users/[1;34m:user_id[1;31m/revoke_api_key([1;34m.:format[1;31m)               [0m | [1;37mrevoke_api_key                      [0m
+[1;36m         admin_user_revoke_moderation[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/revoke_moderation([1;34m.:format[1;31m)            [0m | [1;37mrevoke_moderation                   [0m
+[1;36m          admin_user_grant_moderation[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/grant_moderation([1;34m.:format[1;31m)             [0m | [1;37mgrant_moderation                    [0m
+[1;36m                   admin_user_approve[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/approve([1;34m.:format[1;31m)                      [0m | [1;37mapprove                             [0m
+[1;36m          admin_user_refresh_browsers[0m | [1;33m POST [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/refresh_browsers([1;34m.:format[1;31m)             [0m | [1;37mrefresh_browsers                    [0m
+[1;36m                  admin_user_activate[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/activate([1;34m.:format[1;31m)                     [0m | [1;37mactivate                            [0m
+[1;36m                admin_user_deactivate[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/deactivate([1;34m.:format[1;31m)                   [0m | [1;37mdeactivate                          [0m
+[1;36m                     admin_user_block[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/block([1;34m.:format[1;31m)                        [0m | [1;37mblock                               [0m
+[1;36m                   admin_user_unblock[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/unblock([1;34m.:format[1;31m)                      [0m | [1;37munblock                             [0m
+[1;36m               admin_user_trust_level[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/trust_level([1;34m.:format[1;31m)                  [0m | [1;37mtrust_level                         [0m
+[1;36m             admin_user_primary_group[0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/primary_group([1;34m.:format[1;31m)                [0m | [1;37mprimary_group                       [0m
+[1;36m       admin_user_leader_requirements[0m | [1;33m GET  [0m | [1;31m/admin/users/[1;34m:user_id[1;31m/leader_requirements([1;34m.:format[1;31m)          [0m | [1;37mleader_requirements                 [0m
+[1;36m                          admin_users[0m | [1;33m GET  [0m | [1;31m/admin/users([1;34m.:format[1;31m)                                       [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/users([1;34m.:format[1;31m)                                       [0m | [1;37mcreate                              [0m
+[1;36m                       new_admin_user[0m | [1;33m GET  [0m | [1;31m/admin/users/new([1;34m.:format[1;31m)                                   [0m | [1;37mnew                                 [0m
+[1;36m                      edit_admin_user[0m | [1;33m GET  [0m | [1;31m/admin/users/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                              [0m | [1;37medit                                [0m
+[1;36m                           admin_user[0m | [1;33m GET  [0m | [1;31m/admin/users/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/users/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/users/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/users/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/impersonate[0m
+[1;36m              admin_impersonate_index[0m | [1;33m GET  [0m | [1;31m/admin/impersonate([1;34m.:format[1;31m)                                 [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/impersonate([1;34m.:format[1;31m)                                 [0m | [1;37mcreate                              [0m
+[1;36m                new_admin_impersonate[0m | [1;33m GET  [0m | [1;31m/admin/impersonate/new([1;34m.:format[1;31m)                             [0m | [1;37mnew                                 [0m
+[1;36m               edit_admin_impersonate[0m | [1;33m GET  [0m | [1;31m/admin/impersonate/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                        [0m | [1;37medit                                [0m
+[1;36m                    admin_impersonate[0m | [1;33m GET  [0m | [1;31m/admin/impersonate/[1;34m:id[1;31m([1;34m.:format[1;31m)                             [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/impersonate/[1;34m:id[1;31m([1;34m.:format[1;31m)                             [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/impersonate/[1;34m:id[1;31m([1;34m.:format[1;31m)                             [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/impersonate/[1;34m:id[1;31m([1;34m.:format[1;31m)                             [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/email[0m
+[1;36m               test_admin_email_index[0m | [1;33m POST [0m | [1;31m/admin/email/test([1;34m.:format[1;31m)                                  [0m | [1;37mtest                                [0m
+[1;36m                all_admin_email_index[0m | [1;33m GET  [0m | [1;31m/admin/email/all([1;34m.:format[1;31m)                                   [0m | [1;37mall                                 [0m
+[1;36m               sent_admin_email_index[0m | [1;33m GET  [0m | [1;31m/admin/email/sent([1;34m.:format[1;31m)                                  [0m | [1;37msent                                [0m
+[1;36m            skipped_admin_email_index[0m | [1;33m GET  [0m | [1;31m/admin/email/skipped([1;34m.:format[1;31m)                               [0m | [1;37mskipped                             [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/admin/email/preview-digest([1;34m.:format[1;31m)                        [0m | [1;37mpreview_digest                      [0m
+[1;36m                    admin_email_index[0m | [1;33m GET  [0m | [1;31m/admin/email([1;34m.:format[1;31m)                                       [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/email([1;34m.:format[1;31m)                                       [0m | [1;37mcreate                              [0m
+[1;36m                      new_admin_email[0m | [1;33m GET  [0m | [1;31m/admin/email/new([1;34m.:format[1;31m)                                   [0m | [1;37mnew                                 [0m
+[1;36m                     edit_admin_email[0m | [1;33m GET  [0m | [1;31m/admin/email/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                              [0m | [1;37medit                                [0m
+[1;36m                          admin_email[0m | [1;33m GET  [0m | [1;31m/admin/email/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/email/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/email/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/email/[1;34m:id[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/staff_action_logs[0m
+[1;36m              admin_staff_action_logs[0m | [1;33m GET  [0m | [1;31m/admin/logs/staff_action_logs([1;34m.:format[1;31m)                      [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/screened_emails[0m
+[1;36m                admin_screened_emails[0m | [1;33m GET  [0m | [1;31m/admin/logs/screened_emails([1;34m.:format[1;31m)                        [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/screened_ip_addresses[0m
+[1;36m          admin_screened_ip_addresses[0m | [1;33m GET  [0m | [1;31m/admin/logs/screened_ip_addresses([1;34m.:format[1;31m)                  [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/logs/screened_ip_addresses([1;34m.:format[1;31m)                  [0m | [1;37mcreate                              [0m
+[1;36m            admin_screened_ip_address[0m | [1;33mPATCH [0m | [1;31m/admin/logs/screened_ip_addresses/[1;34m:id[1;31m([1;34m.:format[1;31m)              [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/logs/screened_ip_addresses/[1;34m:id[1;31m([1;34m.:format[1;31m)              [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/logs/screened_ip_addresses/[1;34m:id[1;31m([1;34m.:format[1;31m)              [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/screened_urls[0m
+[1;36m                  admin_screened_urls[0m | [1;33m GET  [0m | [1;31m/admin/logs/screened_urls([1;34m.:format[1;31m)                          [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/site_customizations[0m
+[1;36m                      admin_customize[0m | [1;33m GET  [0m | [1;31m/admin/customize([1;34m.:format[1;31m)                                   [0m | [1;37mindex                               [0m
+[1;36m            admin_site_customizations[0m | [1;33m GET  [0m | [1;31m/admin/site_customizations([1;34m.:format[1;31m)                         [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/site_customizations([1;34m.:format[1;31m)                         [0m | [1;37mcreate                              [0m
+[1;36m         new_admin_site_customization[0m | [1;33m GET  [0m | [1;31m/admin/site_customizations/new([1;34m.:format[1;31m)                     [0m | [1;37mnew                                 [0m
+[1;36m        edit_admin_site_customization[0m | [1;33m GET  [0m | [1;31m/admin/site_customizations/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                [0m | [1;37medit                                [0m
+[1;36m             admin_site_customization[0m | [1;33m GET  [0m | [1;31m/admin/site_customizations/[1;34m:id[1;31m([1;34m.:format[1;31m)                     [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/site_customizations/[1;34m:id[1;31m([1;34m.:format[1;31m)                     [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/site_customizations/[1;34m:id[1;31m([1;34m.:format[1;31m)                     [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/site_customizations/[1;34m:id[1;31m([1;34m.:format[1;31m)                     [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/flags[0m
+[1;36m                          admin_flags[0m | [1;33m GET  [0m | [1;31m/admin/flags([1;34m.:format[1;31m)                                       [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/admin/flags/[1;34m:filter[1;31m([1;34m.:format[1;31m)                               [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/flags/agree/[1;34m:id[1;31m([1;34m.:format[1;31m)                             [0m | [1;37magree                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/flags/disagree/[1;34m:id[1;31m([1;34m.:format[1;31m)                          [0m | [1;37mdisagree                            [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/flags/defer/[1;34m:id[1;31m([1;34m.:format[1;31m)                             [0m | [1;37mdefer                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/site_contents[0m
+[1;36m                  admin_site_contents[0m | [1;33m GET  [0m | [1;31m/admin/site_contents([1;34m.:format[1;31m)                               [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/site_contents([1;34m.:format[1;31m)                               [0m | [1;37mcreate                              [0m
+[1;36m               new_admin_site_content[0m | [1;33m GET  [0m | [1;31m/admin/site_contents/new([1;34m.:format[1;31m)                           [0m | [1;37mnew                                 [0m
+[1;36m              edit_admin_site_content[0m | [1;33m GET  [0m | [1;31m/admin/site_contents/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                      [0m | [1;37medit                                [0m
+[1;36m                   admin_site_content[0m | [1;33m GET  [0m | [1;31m/admin/site_contents/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/site_contents/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/site_contents/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/site_contents/[1;34m:id[1;31m([1;34m.:format[1;31m)                           [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/site_content_types[0m
+[1;36m             admin_site_content_types[0m | [1;33m GET  [0m | [1;31m/admin/site_content_types([1;34m.:format[1;31m)                          [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/site_content_types([1;34m.:format[1;31m)                          [0m | [1;37mcreate                              [0m
+[1;36m          new_admin_site_content_type[0m | [1;33m GET  [0m | [1;31m/admin/site_content_types/new([1;34m.:format[1;31m)                      [0m | [1;37mnew                                 [0m
+[1;36m         edit_admin_site_content_type[0m | [1;33m GET  [0m | [1;31m/admin/site_content_types/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                 [0m | [1;37medit                                [0m
+[1;36m              admin_site_content_type[0m | [1;33m GET  [0m | [1;31m/admin/site_content_types/[1;34m:id[1;31m([1;34m.:format[1;31m)                      [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/admin/site_content_types/[1;34m:id[1;31m([1;34m.:format[1;31m)                      [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/site_content_types/[1;34m:id[1;31m([1;34m.:format[1;31m)                      [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/site_content_types/[1;34m:id[1;31m([1;34m.:format[1;31m)                      [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37madmin/versions[0m
+[1;36m                  admin_version_check[0m | [1;33m GET  [0m | [1;31m/admin/version_check([1;34m.:format[1;31m)                               [0m | [1;37mshow                                [0m
+[1;30m
+CONTROLLER: [1;37madmin/dashboard[0m
+[1;36m       problems_admin_dashboard_index[0m | [1;33m GET  [0m | [1;31m/admin/dashboard/problems([1;34m.:format[1;31m)                          [0m | [1;37mproblems                            [0m
+[1;36m                admin_dashboard_index[0m | [1;33m GET  [0m | [1;31m/admin/dashboard([1;34m.:format[1;31m)                                   [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/api[0m
+[1;36m                  key_admin_api_index[0m | [1;33m POST [0m | [1;31m/admin/api/key([1;34m.:format[1;31m)                                     [0m | [1;37mcreate_master_key                   [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/admin/api/key([1;34m.:format[1;31m)                                     [0m | [1;37mregenerate_key                      [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/api/key([1;34m.:format[1;31m)                                     [0m | [1;37mrevoke_key                          [0m
+[1;36m                      admin_api_index[0m | [1;33m GET  [0m | [1;31m/admin/api([1;34m.:format[1;31m)                                         [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37madmin/backups[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/admin/backups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/admin/backups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mdestroy                             [0m
+[1;36m                 restore_admin_backup[0m | [1;33m POST [0m | [1;31m/admin/backups/[1;34m:id[1;31m/restore([1;34m.:format[1;31m)                         [0m | [1;37mrestore                             [0m
+[1;36m                   logs_admin_backups[0m | [1;33m GET  [0m | [1;31m/admin/backups/logs([1;34m.:format[1;31m)                                [0m | [1;37mlogs                                [0m
+[1;36m                 status_admin_backups[0m | [1;33m GET  [0m | [1;31m/admin/backups/status([1;34m.:format[1;31m)                              [0m | [1;37mstatus                              [0m
+[1;36m                 cancel_admin_backups[0m | [1;33m GET  [0m | [1;31m/admin/backups/cancel([1;34m.:format[1;31m)                              [0m | [1;37mcancel                              [0m
+[1;36m               rollback_admin_backups[0m | [1;33m GET  [0m | [1;31m/admin/backups/rollback([1;34m.:format[1;31m)                            [0m | [1;37mrollback                            [0m
+[1;36m               readonly_admin_backups[0m | [1;33m PUT  [0m | [1;31m/admin/backups/readonly([1;34m.:format[1;31m)                            [0m | [1;37mreadonly                            [0m
+[1;36m                        admin_backups[0m | [1;33m GET  [0m | [1;31m/admin/backups([1;34m.:format[1;31m)                                     [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/admin/backups([1;34m.:format[1;31m)                                     [0m | [1;37mcreate                              [0m
+[1;30m
+CONTROLLER: [1;37madmin/diagnostics[0m
+[1;36m                   admin_memory_stats[0m | [1;33m GET  [0m | [1;31m/admin/memory_stats([1;34m.:format[1;31m)                                [0m | [1;37mmemory_stats                        [0m
+[1;30m
+CONTROLLER: [1;37memail[0m
+[1;36m           email_preferences_redirect[0m | [1;33m GET  [0m | [1;31m/email_preferences([1;34m.:format[1;31m)                                 [0m | [1;37mpreferences_redirect                [0m
+[1;36m                    email_unsubscribe[0m | [1;33m GET  [0m | [1;31m/email/unsubscribe/[1;34m:key[1;31m([1;34m.:format[1;31m)                            [0m | [1;37munsubscribe                         [0m
+[1;36m                    email_resubscribe[0m | [1;33m POST [0m | [1;31m/email/resubscribe/[1;34m:key[1;31m([1;34m.:format[1;31m)                            [0m | [1;37mresubscribe                         [0m
+[1;30m
+CONTROLLER: [1;37msession[0m
+[1;36m        forgot_password_session_index[0m | [1;33m POST [0m | [1;31m/session/forgot_password([1;34m.:format[1;31m)                           [0m | [1;37mforgot_password                     [0m
+[1;36m                        session_index[0m | [1;33m POST [0m | [1;31m/session([1;34m.:format[1;31m)                                           [0m | [1;37mcreate                              [0m
+[1;36m                              session[0m | [1;33mDELETE[0m | [1;31m/session/[1;34m:id[1;31m([1;34m.:format[1;31m)                                       [0m | [1;37mdestroy                             [0m
+[1;36m                      session_current[0m | [1;33m GET  [0m | [1;31m/session/current([1;34m.:format[1;31m)                                   [0m | [1;37mcurrent                             [0m
+[1;36m                         session_csrf[0m | [1;33m GET  [0m | [1;31m/session/csrf([1;34m.:format[1;31m)                                      [0m | [1;37mcsrf                                [0m
+[1;30m
+CONTROLLER: [1;37mcomposer_messages[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/composer-messages([1;34m.:format[1;31m)                                 [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37musers[0m
+[1;36m                 check_username_users[0m | [1;33m GET  [0m | [1;31m/users/check_username([1;34m.:format[1;31m)                              [0m | [1;37mcheck_username                      [0m
+[1;36m              is_local_username_users[0m | [1;33m GET  [0m | [1;31m/users/is_local_username([1;34m.:format[1;31m)                           [0m | [1;37mis_local_username                   [0m
+[1;36m                                users[0m | [1;33m GET  [0m | [1;31m/users([1;34m.:format[1;31m)                                             [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/users([1;34m.:format[1;31m)                                             [0m | [1;37mcreate                              [0m
+[1;36m                             new_user[0m | [1;33m GET  [0m | [1;31m/users/new([1;34m.:format[1;31m)                                         [0m | [1;37mnew                                 [0m
+[1;36m                            edit_user[0m | [1;33m GET  [0m | [1;31m/users/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                    [0m | [1;37medit                                [0m
+[1;36m                   users_search_users[0m | [1;33m GET  [0m | [1;31m/users/search/users([1;34m.:format[1;31m)                                [0m | [1;37msearch_users                        [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/password-reset/[1;34m:token[1;31m([1;34m.:format[1;31m)                       [0m | [1;37mpassword_reset                      [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/users/password-reset/[1;34m:token[1;31m([1;34m.:format[1;31m)                       [0m | [1;37mpassword_reset                      [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/activate-account/[1;34m:token[1;31m([1;34m.:format[1;31m)                     [0m | [1;37mactivate_account                    [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/authorize-email/[1;34m:token[1;31m([1;34m.:format[1;31m)                      [0m | [1;37mauthorize_email                     [0m
+[1;36m                             users_hp[0m | [1;33m GET  [0m | [1;31m/users/hp([1;34m.:format[1;31m)                                          [0m | [1;37mget_honeypot_value                  [0m
+[1;36m                     user_preferences[0m | [1;33m GET  [0m | [1;31m/user_preferences([1;34m.:format[1;31m)                                  [0m | [1;37muser_preferences_redirect           [0m
+[1;36m                             userpage[0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/users/[1;34m:username[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mupdate                              [0m
+[1;36m                    email_preferences[0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/preferences([1;34m.:format[1;31m)                       [0m | [1;37mpreferences                         [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/preferences/email([1;34m.:format[1;31m)                 [0m | [1;37mpreferences                         [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/users/[1;34m:username[1;31m/preferences/email([1;34m.:format[1;31m)                 [0m | [1;37mchange_email                        [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/preferences/about-me([1;34m.:format[1;31m)              [0m | [1;37mpreferences                         [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/preferences/username([1;34m.:format[1;31m)              [0m | [1;37mpreferences                         [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/users/[1;34m:username[1;31m/preferences/username([1;34m.:format[1;31m)              [0m | [1;37musername                            [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/avatar(/[1;34m:size[1;31m)([1;34m.:format[1;31m)                    [0m | [1;37mavatar                              [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/users/[1;34m:username[1;31m/preferences/avatar([1;34m.:format[1;31m)                [0m | [1;37mupload_avatar                       [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/users/[1;34m:username[1;31m/preferences/avatar/toggle([1;34m.:format[1;31m)         [0m | [1;37mtoggle_avatar                       [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/invited([1;34m.:format[1;31m)                           [0m | [1;37minvited                             [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/users/[1;34m:username[1;31m/send_activation_email([1;34m.:format[1;31m)             [0m | [1;37msend_activation_email               [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/activity([1;34m.:format[1;31m)                          [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/activity/[1;34m:filter[1;31m([1;34m.:format[1;31m)                  [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/users/[1;34m:username[1;31m([1;34m.:format[1;31m)                                   [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37mstatic[0m
+[1;36m                         static_index[0m | [1;33m GET  [0m | [1;31m/static([1;34m.:format[1;31m)                                            [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/static([1;34m.:format[1;31m)                                            [0m | [1;37mcreate                              [0m
+[1;36m                           new_static[0m | [1;33m GET  [0m | [1;31m/static/new([1;34m.:format[1;31m)                                        [0m | [1;37mnew                                 [0m
+[1;36m                          edit_static[0m | [1;33m GET  [0m | [1;31m/static/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                   [0m | [1;37medit                                [0m
+[1;36m                               static[0m | [1;33m GET  [0m | [1;31m/static/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/static/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/static/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/static/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mdestroy                             [0m
+[1;36m                                login[0m | [1;33m POST [0m | [1;31m/login([1;34m.:format[1;31m)                                             [0m | [1;37menter                               [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/login([1;34m.:format[1;31m)                                             [0m | [1;37mshow                                [0m
+[1;36m                                  faq[0m | [1;33m GET  [0m | [1;31m/faq([1;34m.:format[1;31m)                                               [0m | [1;37mshow                                [0m
+[1;36m                                  tos[0m | [1;33m GET  [0m | [1;31m/tos([1;34m.:format[1;31m)                                               [0m | [1;37mshow                                [0m
+[1;36m                              privacy[0m | [1;33m GET  [0m | [1;31m/privacy([1;34m.:format[1;31m)                                           [0m | [1;37mshow                                [0m
+[1;30m
+CONTROLLER: [1;37muser_actions[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/private-messages([1;34m.:format[1;31m)                  [0m | [1;37mprivate_messages                    [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/users/[1;34m:username[1;31m/private-messages/[1;34m:filter[1;31m([1;34m.:format[1;31m)          [0m | [1;37mprivate_messages                    [0m
+[1;36m                         user_actions[0m | [1;33m GET  [0m | [1;31m/user_actions([1;34m.:format[1;31m)                                      [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/user_actions([1;34m.:format[1;31m)                                      [0m | [1;37mcreate                              [0m
+[1;36m                      new_user_action[0m | [1;33m GET  [0m | [1;31m/user_actions/new([1;34m.:format[1;31m)                                  [0m | [1;37mnew                                 [0m
+[1;36m                     edit_user_action[0m | [1;33m GET  [0m | [1;31m/user_actions/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                             [0m | [1;37medit                                [0m
+[1;36m                          user_action[0m | [1;33m GET  [0m | [1;31m/user_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/user_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/user_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/user_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37muploads[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/uploads/[1;34m:site[1;31m/[1;34m:id[1;31m/[1;34m:sha[1;31m[1;34m.:extension[1;31m([1;34m.:format[1;31m)                 [0m | [1;37mshow                                [0m
+[1;36m                              uploads[0m | [1;33m POST [0m | [1;31m/uploads([1;34m.:format[1;31m)                                           [0m | [1;37mcreate                              [0m
+[1;30m
+CONTROLLER: [1;37mposts[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/posts/by_number/[1;34m:topic_id[1;31m/[1;34m:post_number[1;31m([1;34m.:format[1;31m)            [0m | [1;37mby_number                           [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/posts/[1;34m:id[1;31m/reply-history([1;34m.:format[1;31m)                           [0m | [1;37mreply_history                       [0m
+[1;36m                        post_bookmark[0m | [1;33m PUT  [0m | [1;31m/posts/[1;34m:post_id[1;31m/bookmark([1;34m.:format[1;31m)                           [0m | [1;37mbookmark                            [0m
+[1;36m                         post_replies[0m | [1;33m GET  [0m | [1;31m/posts/[1;34m:post_id[1;31m/replies([1;34m.:format[1;31m)                            [0m | [1;37mreplies                             [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/posts/[1;34m:post_id[1;31m/revisions/[1;34m:revision[1;31m([1;34m.:format[1;31m)                [0m | [1;37mrevisions                           [0m
+[1;36m                         post_recover[0m | [1;33m PUT  [0m | [1;31m/posts/[1;34m:post_id[1;31m/recover([1;34m.:format[1;31m)                            [0m | [1;37mrecover                             [0m
+[1;36m                   destroy_many_posts[0m | [1;33mDELETE[0m | [1;31m/posts/destroy_many([1;34m.:format[1;31m)                                [0m | [1;37mdestroy_many                        [0m
+[1;36m                                posts[0m | [1;33m GET  [0m | [1;31m/posts([1;34m.:format[1;31m)                                             [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/posts([1;34m.:format[1;31m)                                             [0m | [1;37mcreate                              [0m
+[1;36m                             new_post[0m | [1;33m GET  [0m | [1;31m/posts/new([1;34m.:format[1;31m)                                         [0m | [1;37mnew                                 [0m
+[1;36m                            edit_post[0m | [1;33m GET  [0m | [1;31m/posts/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                    [0m | [1;37medit                                [0m
+[1;36m                                 post[0m | [1;33m GET  [0m | [1;31m/posts/[1;34m:id[1;31m([1;34m.:format[1;31m)                                         [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/posts/[1;34m:id[1;31m([1;34m.:format[1;31m)                                         [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/posts/[1;34m:id[1;31m([1;34m.:format[1;31m)                                         [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/posts/[1;34m:id[1;31m([1;34m.:format[1;31m)                                         [0m | [1;37mdestroy                             [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/p/[1;34m:post_id[1;31m/[1;34m:user_id[1;31m([1;34m.:format[1;31m)                               [0m | [1;37mshort_link                          [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/raw/[1;34m:topic_id[1;31m(/[1;34m:post_number[1;31m)([1;34m.:format[1;31m)                      [0m | [1;37mmarkdown                            [0m
+[1;30m
+CONTROLLER: [1;37mgroups[0m
+[1;36m                        group_members[0m | [1;33m GET  [0m | [1;31m/groups/[1;34m:group_id[1;31m/members([1;34m.:format[1;31m)                          [0m | [1;37mmembers                             [0m
+[1;36m                          group_posts[0m | [1;33m GET  [0m | [1;31m/groups/[1;34m:group_id[1;31m/posts([1;34m.:format[1;31m)                            [0m | [1;37mposts                               [0m
+[1;36m                    group_posts_count[0m | [1;33m GET  [0m | [1;31m/groups/[1;34m:group_id[1;31m/posts_count([1;34m.:format[1;31m)                      [0m | [1;37mposts_count                         [0m
+[1;36m                               groups[0m | [1;33m GET  [0m | [1;31m/groups([1;34m.:format[1;31m)                                            [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/groups([1;34m.:format[1;31m)                                            [0m | [1;37mcreate                              [0m
+[1;36m                            new_group[0m | [1;33m GET  [0m | [1;31m/groups/new([1;34m.:format[1;31m)                                        [0m | [1;37mnew                                 [0m
+[1;36m                           edit_group[0m | [1;33m GET  [0m | [1;31m/groups/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                   [0m | [1;37medit                                [0m
+[1;36m                                group[0m | [1;33m GET  [0m | [1;31m/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/groups/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37mnotifications[0m
+[1;36m                        notifications[0m | [1;33m GET  [0m | [1;31m/notifications([1;34m.:format[1;31m)                                     [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/notifications([1;34m.:format[1;31m)                                     [0m | [1;37mcreate                              [0m
+[1;36m                     new_notification[0m | [1;33m GET  [0m | [1;31m/notifications/new([1;34m.:format[1;31m)                                 [0m | [1;37mnew                                 [0m
+[1;36m                    edit_notification[0m | [1;33m GET  [0m | [1;31m/notifications/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                            [0m | [1;37medit                                [0m
+[1;36m                         notification[0m | [1;33m GET  [0m | [1;31m/notifications/[1;34m:id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/notifications/[1;34m:id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/notifications/[1;34m:id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/notifications/[1;34m:id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37musers/omniauth_callbacks[0m
+[1;36m                                     [0m | [1;33mGET|POST[0m | [1;31m/auth/[1;34m:provider[1;31m/callback([1;34m.:format[1;31m)                           [0m | [1;37mcomplete                            [0m
+[1;36m                         auth_failure[0m | [1;33mGET|POST[0m | [1;31m/auth/failure([1;34m.:format[1;31m)                                      [0m | [1;37mfailure                             [0m
+[1;30m
+CONTROLLER: [1;37mclicks[0m
+[1;36m                         track_clicks[0m | [1;33m GET  [0m | [1;31m/clicks/track([1;34m.:format[1;31m)                                      [0m | [1;37mtrack                               [0m
+[1;36m                               clicks[0m | [1;33m GET  [0m | [1;31m/clicks([1;34m.:format[1;31m)                                            [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/clicks([1;34m.:format[1;31m)                                            [0m | [1;37mcreate                              [0m
+[1;36m                            new_click[0m | [1;33m GET  [0m | [1;31m/clicks/new([1;34m.:format[1;31m)                                        [0m | [1;37mnew                                 [0m
+[1;36m                           edit_click[0m | [1;33m GET  [0m | [1;31m/clicks/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                   [0m | [1;37medit                                [0m
+[1;36m                                click[0m | [1;33m GET  [0m | [1;31m/clicks/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/clicks/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/clicks/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/clicks/[1;34m:id[1;31m([1;34m.:format[1;31m)                                        [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37mexcerpt[0m
+[1;36m                              excerpt[0m | [1;33m GET  [0m | [1;31m/excerpt([1;34m.:format[1;31m)                                           [0m | [1;37mshow                                [0m
+[1;30m
+CONTROLLER: [1;37mpost_actions[0m
+[1;36m                   users_post_actions[0m | [1;33m GET  [0m | [1;31m/post_actions/users([1;34m.:format[1;31m)                                [0m | [1;37musers                               [0m
+[1;36m             clear_flags_post_actions[0m | [1;33m POST [0m | [1;31m/post_actions/clear_flags([1;34m.:format[1;31m)                          [0m | [1;37mclear_flags                         [0m
+[1;36m                         post_actions[0m | [1;33m GET  [0m | [1;31m/post_actions([1;34m.:format[1;31m)                                      [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/post_actions([1;34m.:format[1;31m)                                      [0m | [1;37mcreate                              [0m
+[1;36m                      new_post_action[0m | [1;33m GET  [0m | [1;31m/post_actions/new([1;34m.:format[1;31m)                                  [0m | [1;37mnew                                 [0m
+[1;36m                     edit_post_action[0m | [1;33m GET  [0m | [1;31m/post_actions/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                             [0m | [1;37medit                                [0m
+[1;36m                          post_action[0m | [1;33m GET  [0m | [1;31m/post_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/post_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/post_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/post_actions/[1;34m:id[1;31m([1;34m.:format[1;31m)                                  [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37mlist[0m
+[1;36m                              popular[0m | [1;33m GET  [0m | [1;31m/popular([1;34m.:format[1;31m)                                           [0m | [1;37mpopular_redirect                    [0m
+[1;36m                         popular_more[0m | [1;33m GET  [0m | [1;31m/popular/more([1;34m.:format[1;31m)                                      [0m | [1;37mpopular_redirect                    [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m.rss([1;34m.:format[1;31m)                            [0m | [1;37mcategory_feed                       [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m.rss([1;34m.:format[1;31m)           [0m | [1;37mcategory_feed                       [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m([1;34m.:format[1;31m)                                [0m | [1;37mcategory_latest                     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none([1;34m.:format[1;31m)                           [0m | [1;37mcategory_none_latest                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m([1;34m.:format[1;31m)               [0m | [1;37mparent_category_category_latest     [0m
+[1;36m                                  top[0m | [1;33m GET  [0m | [1;31m/top([1;34m.:format[1;31m)                                               [0m | [1;37mtop                                 [0m
+[1;36m                         category_top[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/top([1;34m.:format[1;31m)                          [0m | [1;37mcategory_top                        [0m
+[1;36m                    category_none_top[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/top([1;34m.:format[1;31m)                     [0m | [1;37mcategory_none_top                   [0m
+[1;36m         parent_category_category_top[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/top([1;34m.:format[1;31m)         [0m | [1;37mparent_category_category_top        [0m
+[1;36m                           top_yearly[0m | [1;33m GET  [0m | [1;31m/top/yearly([1;34m.:format[1;31m)                                        [0m | [1;37mtop_yearly                          [0m
+[1;36m                  category_top_yearly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/top/yearly([1;34m.:format[1;31m)                   [0m | [1;37mcategory_top_yearly                 [0m
+[1;36m             category_none_top_yearly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/top/yearly([1;34m.:format[1;31m)              [0m | [1;37mcategory_none_top_yearly            [0m
+[1;36m  parent_category_category_top_yearly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/top/yearly([1;34m.:format[1;31m)  [0m | [1;37mparent_category_category_top_yearly [0m
+[1;36m                          top_monthly[0m | [1;33m GET  [0m | [1;31m/top/monthly([1;34m.:format[1;31m)                                       [0m | [1;37mtop_monthly                         [0m
+[1;36m                 category_top_monthly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/top/monthly([1;34m.:format[1;31m)                  [0m | [1;37mcategory_top_monthly                [0m
+[1;36m            category_none_top_monthly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/top/monthly([1;34m.:format[1;31m)             [0m | [1;37mcategory_none_top_monthly           [0m
+[1;36m parent_category_category_top_monthly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/top/monthly([1;34m.:format[1;31m) [0m | [1;37mparent_category_category_top_monthly[0m
+[1;36m                           top_weekly[0m | [1;33m GET  [0m | [1;31m/top/weekly([1;34m.:format[1;31m)                                        [0m | [1;37mtop_weekly                          [0m
+[1;36m                  category_top_weekly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/top/weekly([1;34m.:format[1;31m)                   [0m | [1;37mcategory_top_weekly                 [0m
+[1;36m             category_none_top_weekly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/top/weekly([1;34m.:format[1;31m)              [0m | [1;37mcategory_none_top_weekly            [0m
+[1;36m  parent_category_category_top_weekly[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/top/weekly([1;34m.:format[1;31m)  [0m | [1;37mparent_category_category_top_weekly [0m
+[1;36m                            top_daily[0m | [1;33m GET  [0m | [1;31m/top/daily([1;34m.:format[1;31m)                                         [0m | [1;37mtop_daily                           [0m
+[1;36m                   category_top_daily[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/top/daily([1;34m.:format[1;31m)                    [0m | [1;37mcategory_top_daily                  [0m
+[1;36m              category_none_top_daily[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/top/daily([1;34m.:format[1;31m)               [0m | [1;37mcategory_none_top_daily             [0m
+[1;36m   parent_category_category_top_daily[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/top/daily([1;34m.:format[1;31m)   [0m | [1;37mparent_category_category_top_daily  [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/latest.rss([1;34m.:format[1;31m)                                        [0m | [1;37mlatest_feed                         [0m
+[1;36m                               latest[0m | [1;33m GET  [0m | [1;31m/latest([1;34m.:format[1;31m)                                            [0m | [1;37mlatest                              [0m
+[1;36m                          latest_more[0m | [1;33m GET  [0m | [1;31m/latest/more([1;34m.:format[1;31m)                                       [0m | [1;37mlatest                              [0m
+[1;36m                      category_latest[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/latest([1;34m.:format[1;31m)                       [0m | [1;37mcategory_latest                     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/latest/more([1;34m.:format[1;31m)                  [0m | [1;37mcategory_latest                     [0m
+[1;36m                 category_none_latest[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/latest([1;34m.:format[1;31m)                  [0m | [1;37mcategory_none_latest                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/latest/more([1;34m.:format[1;31m)             [0m | [1;37mcategory_none_latest                [0m
+[1;36m      parent_category_category_latest[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/latest([1;34m.:format[1;31m)      [0m | [1;37mparent_category_category_latest     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/latest/more([1;34m.:format[1;31m) [0m | [1;37mparent_category_category_latest     [0m
+[1;36m                               unread[0m | [1;33m GET  [0m | [1;31m/unread([1;34m.:format[1;31m)                                            [0m | [1;37munread                              [0m
+[1;36m                          unread_more[0m | [1;33m GET  [0m | [1;31m/unread/more([1;34m.:format[1;31m)                                       [0m | [1;37munread                              [0m
+[1;36m                      category_unread[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/unread([1;34m.:format[1;31m)                       [0m | [1;37mcategory_unread                     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/unread/more([1;34m.:format[1;31m)                  [0m | [1;37mcategory_unread                     [0m
+[1;36m                 category_none_unread[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/unread([1;34m.:format[1;31m)                  [0m | [1;37mcategory_none_unread                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/unread/more([1;34m.:format[1;31m)             [0m | [1;37mcategory_none_unread                [0m
+[1;36m      parent_category_category_unread[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/unread([1;34m.:format[1;31m)      [0m | [1;37mparent_category_category_unread     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/unread/more([1;34m.:format[1;31m) [0m | [1;37mparent_category_category_unread     [0m
+[1;36m                                  new[0m | [1;33m GET  [0m | [1;31m/new([1;34m.:format[1;31m)                                               [0m | [1;37mnew                                 [0m
+[1;36m                             new_more[0m | [1;33m GET  [0m | [1;31m/new/more([1;34m.:format[1;31m)                                          [0m | [1;37mnew                                 [0m
+[1;36m                         category_new[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/new([1;34m.:format[1;31m)                          [0m | [1;37mcategory_new                        [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/new/more([1;34m.:format[1;31m)                     [0m | [1;37mcategory_new                        [0m
+[1;36m                    category_none_new[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/new([1;34m.:format[1;31m)                     [0m | [1;37mcategory_none_new                   [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/new/more([1;34m.:format[1;31m)                [0m | [1;37mcategory_none_new                   [0m
+[1;36m         parent_category_category_new[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/new([1;34m.:format[1;31m)         [0m | [1;37mparent_category_category_new        [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/new/more([1;34m.:format[1;31m)    [0m | [1;37mparent_category_category_new        [0m
+[1;36m                              starred[0m | [1;33m GET  [0m | [1;31m/starred([1;34m.:format[1;31m)                                           [0m | [1;37mstarred                             [0m
+[1;36m                         starred_more[0m | [1;33m GET  [0m | [1;31m/starred/more([1;34m.:format[1;31m)                                      [0m | [1;37mstarred                             [0m
+[1;36m                     category_starred[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/starred([1;34m.:format[1;31m)                      [0m | [1;37mcategory_starred                    [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/starred/more([1;34m.:format[1;31m)                 [0m | [1;37mcategory_starred                    [0m
+[1;36m                category_none_starred[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/starred([1;34m.:format[1;31m)                 [0m | [1;37mcategory_none_starred               [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/starred/more([1;34m.:format[1;31m)            [0m | [1;37mcategory_none_starred               [0m
+[1;36m     parent_category_category_starred[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/starred([1;34m.:format[1;31m)     [0m | [1;37mparent_category_category_starred    [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/starred/more([1;34m.:format[1;31m)[0m | [1;37mparent_category_category_starred    [0m
+[1;36m                                 read[0m | [1;33m GET  [0m | [1;31m/read([1;34m.:format[1;31m)                                              [0m | [1;37mread                                [0m
+[1;36m                            read_more[0m | [1;33m GET  [0m | [1;31m/read/more([1;34m.:format[1;31m)                                         [0m | [1;37mread                                [0m
+[1;36m                        category_read[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/read([1;34m.:format[1;31m)                         [0m | [1;37mcategory_read                       [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/read/more([1;34m.:format[1;31m)                    [0m | [1;37mcategory_read                       [0m
+[1;36m                   category_none_read[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/read([1;34m.:format[1;31m)                    [0m | [1;37mcategory_none_read                  [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/read/more([1;34m.:format[1;31m)               [0m | [1;37mcategory_none_read                  [0m
+[1;36m        parent_category_category_read[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/read([1;34m.:format[1;31m)        [0m | [1;37mparent_category_category_read       [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/read/more([1;34m.:format[1;31m)   [0m | [1;37mparent_category_category_read       [0m
+[1;36m                               posted[0m | [1;33m GET  [0m | [1;31m/posted([1;34m.:format[1;31m)                                            [0m | [1;37mposted                              [0m
+[1;36m                          posted_more[0m | [1;33m GET  [0m | [1;31m/posted/more([1;34m.:format[1;31m)                                       [0m | [1;37mposted                              [0m
+[1;36m                      category_posted[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/posted([1;34m.:format[1;31m)                       [0m | [1;37mcategory_posted                     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/l/posted/more([1;34m.:format[1;31m)                  [0m | [1;37mcategory_posted                     [0m
+[1;36m                 category_none_posted[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/posted([1;34m.:format[1;31m)                  [0m | [1;37mcategory_none_posted                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:category[1;31m/none/l/posted/more([1;34m.:format[1;31m)             [0m | [1;37mcategory_none_posted                [0m
+[1;36m      parent_category_category_posted[0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/posted([1;34m.:format[1;31m)      [0m | [1;37mparent_category_category_posted     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:parent_category[1;31m/[1;34m:category[1;31m/l/posted/more([1;34m.:format[1;31m) [0m | [1;37mparent_category_category_posted     [0m
+[1;36m                            topics_by[0m | [1;33m GET  [0m | [1;31m/topics/created-by/[1;34m:username[1;31m([1;34m.:format[1;31m)                       [0m | [1;37mtopics_by                           [0m
+[1;36m              topics_private_messages[0m | [1;33m GET  [0m | [1;31m/topics/private-messages/[1;34m:username[1;31m([1;34m.:format[1;31m)                 [0m | [1;37mprivate_messages                    [0m
+[1;36m         topics_private_messages_sent[0m | [1;33m GET  [0m | [1;31m/topics/private-messages-sent/[1;34m:username[1;31m([1;34m.:format[1;31m)            [0m | [1;37mprivate_messages_sent               [0m
+[1;36m       topics_private_messages_unread[0m | [1;33m GET  [0m | [1;31m/topics/private-messages-unread/[1;34m:username[1;31m([1;34m.:format[1;31m)          [0m | [1;37mprivate_messages_unread             [0m
+[1;36m                          list_latest[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mlatest                              [0m
+[1;36m                          list_unread[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37munread                              [0m
+[1;36m                             list_new[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mnew                                 [0m
+[1;36m                         list_starred[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mstarred                             [0m
+[1;36m                            list_read[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mread                                [0m
+[1;36m                          list_posted[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mposted                              [0m
+[1;36m                            top_lists[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mtop                                 [0m
+[1;30m
+CONTROLLER: [1;37mcategories[0m
+[1;36m                           categories[0m | [1;33m GET  [0m | [1;31m/categories([1;34m.:format[1;31m)                                        [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/categories([1;34m.:format[1;31m)                                        [0m | [1;37mcreate                              [0m
+[1;36m                         new_category[0m | [1;33m GET  [0m | [1;31m/categories/new([1;34m.:format[1;31m)                                    [0m | [1;37mnew                                 [0m
+[1;36m                        edit_category[0m | [1;33m GET  [0m | [1;31m/categories/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                               [0m | [1;37medit                                [0m
+[1;36m                             category[0m | [1;33mPATCH [0m | [1;31m/categories/[1;34m:id[1;31m([1;34m.:format[1;31m)                                    [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/categories/[1;34m:id[1;31m([1;34m.:format[1;31m)                                    [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/categories/[1;34m:id[1;31m([1;34m.:format[1;31m)                                    [0m | [1;37mdestroy                             [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/category/[1;34m:id[1;31m/show([1;34m.:format[1;31m)                                 [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/category/[1;34m:category_id[1;31m/move([1;34m.:format[1;31m)                        [0m | [1;37mmove                                [0m
+[1;36m                     categories_index[0m | [1;33m GET  [0m | [1;31m/                                                            [0m | [1;37mindex                               [0m
+[1;30m
+CONTROLLER: [1;37msearch[0m
+[1;36m                               search[0m | [1;33m GET  [0m | [1;31m/search([1;34m.:format[1;31m)                                            [0m | [1;37mquery                               [0m
+[1;30m
+CONTROLLER: [1;37mtopics[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:id[1;31m([1;34m.:format[1;31m)                                             [0m | [1;37mshow                                [0m
+[1;36m                                    t[0m | [1;33m POST [0m | [1;31m/t([1;34m.:format[1;31m)                                                 [0m | [1;37mcreate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:id[1;31m([1;34m.:format[1;31m)                                             [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/t/[1;34m:id[1;31m([1;34m.:format[1;31m)                                             [0m | [1;37mdestroy                             [0m
+[1;36m                          topics_bulk[0m | [1;33m PUT  [0m | [1;31m/topics/bulk([1;34m.:format[1;31m)                                       [0m | [1;37mbulk                                [0m
+[1;36m                       topics_timings[0m | [1;33m POST [0m | [1;31m/topics/timings([1;34m.:format[1;31m)                                    [0m | [1;37mtimings                             [0m
+[1;36m                    topics_similar_to[0m | [1;33m GET  [0m | [1;31m/topics/similar_to([1;34m.:format[1;31m)                                 [0m | [1;37msimilar_to                          [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/wordpress([1;34m.:format[1;31m)                       [0m | [1;37mwordpress                           [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/moderator-liked([1;34m.:format[1;31m)                 [0m | [1;37mmoderator_liked                     [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:topic_id[1;31m/wordpress([1;34m.:format[1;31m)                             [0m | [1;37mwordpress                           [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/summary([1;34m.:format[1;31m)                         [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:topic_id[1;31m/summary([1;34m.:format[1;31m)                               [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/star([1;34m.:format[1;31m)                            [0m | [1;37mstar                                [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/star([1;34m.:format[1;31m)                                  [0m | [1;37mstar                                [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/status([1;34m.:format[1;31m)                          [0m | [1;37mstatus                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/status([1;34m.:format[1;31m)                                [0m | [1;37mstatus                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/clear-pin([1;34m.:format[1;31m)                             [0m | [1;37mclear_pin                           [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/mute([1;34m.:format[1;31m)                                  [0m | [1;37mmute                                [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/unmute([1;34m.:format[1;31m)                                [0m | [1;37munmute                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/autoclose([1;34m.:format[1;31m)                             [0m | [1;37mautoclose                           [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/remove-allowed-user([1;34m.:format[1;31m)                   [0m | [1;37mremove_allowed_user                 [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/t/[1;34m:topic_id[1;31m/recover([1;34m.:format[1;31m)                               [0m | [1;37mrecover                             [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:topic_id[1;31m/[1;34m:post_number[1;31m([1;34m.:format[1;31m)                          [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:topic_id[1;31m/last([1;34m.:format[1;31m)                                  [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m.rss([1;34m.:format[1;31m)                             [0m | [1;37mfeed                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m([1;34m.:format[1;31m)                                 [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/[1;34m:post_number[1;31m([1;34m.:format[1;31m)                    [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:slug[1;31m/[1;34m:topic_id[1;31m/last([1;34m.:format[1;31m)                            [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/t/[1;34m:topic_id[1;31m/posts([1;34m.:format[1;31m)                                 [0m | [1;37mposts                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/t/[1;34m:topic_id[1;31m/timings([1;34m.:format[1;31m)                               [0m | [1;37mtimings                             [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/t/[1;34m:topic_id[1;31m/invite([1;34m.:format[1;31m)                                [0m | [1;37minvite                              [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/t/[1;34m:topic_id[1;31m/move-posts([1;34m.:format[1;31m)                            [0m | [1;37mmove_posts                          [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/t/[1;34m:topic_id[1;31m/merge-topic([1;34m.:format[1;31m)                           [0m | [1;37mmerge_topic                         [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/t/[1;34m:topic_id[1;31m/timings([1;34m.:format[1;31m)                               [0m | [1;37mdestroy_timings                     [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/t/[1;34m:topic_id[1;31m/notifications([1;34m.:format[1;31m)                         [0m | [1;37mset_notifications                   [0m
+[1;30m
+CONTROLLER: [1;37membed[0m
+[1;36m                       embed_comments[0m | [1;33m GET  [0m | [1;31m/embed/comments([1;34m.:format[1;31m)                                    [0m | [1;37mcomments                            [0m
+[1;36m                          embed_count[0m | [1;33m GET  [0m | [1;31m/embed/count([1;34m.:format[1;31m)                                       [0m | [1;37mcount                               [0m
+[1;30m
+CONTROLLER: [1;37minvites[0m
+[1;36m                              invites[0m | [1;33m GET  [0m | [1;31m/invites([1;34m.:format[1;31m)                                           [0m | [1;37mindex                               [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/invites([1;34m.:format[1;31m)                                           [0m | [1;37mcreate                              [0m
+[1;36m                           new_invite[0m | [1;33m GET  [0m | [1;31m/invites/new([1;34m.:format[1;31m)                                       [0m | [1;37mnew                                 [0m
+[1;36m                          edit_invite[0m | [1;33m GET  [0m | [1;31m/invites/[1;34m:id[1;31m/edit([1;34m.:format[1;31m)                                  [0m | [1;37medit                                [0m
+[1;36m                               invite[0m | [1;33m GET  [0m | [1;31m/invites/[1;34m:id[1;31m([1;34m.:format[1;31m)                                       [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33mPATCH [0m | [1;31m/invites/[1;34m:id[1;31m([1;34m.:format[1;31m)                                       [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33m PUT  [0m | [1;31m/invites/[1;34m:id[1;31m([1;34m.:format[1;31m)                                       [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/invites/[1;34m:id[1;31m([1;34m.:format[1;31m)                                       [0m | [1;37mdestroy                             [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/invites([1;34m.:format[1;31m)                                           [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37monebox[0m
+[1;36m                               onebox[0m | [1;33m GET  [0m | [1;31m/onebox([1;34m.:format[1;31m)                                            [0m | [1;37mshow                                [0m
+[1;30m
+CONTROLLER: [1;37mmessage_bus[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/message-bus/poll([1;34m.:format[1;31m)                                  [0m | [1;37mpoll                                [0m
+[1;30m
+CONTROLLER: [1;37mdraft[0m
+[1;36m                                draft[0m | [1;33m GET  [0m | [1;31m/draft([1;34m.:format[1;31m)                                             [0m | [1;37mshow                                [0m
+[1;36m                                     [0m | [1;33m POST [0m | [1;31m/draft([1;34m.:format[1;31m)                                             [0m | [1;37mupdate                              [0m
+[1;36m                                     [0m | [1;33mDELETE[0m | [1;31m/draft([1;34m.:format[1;31m)                                             [0m | [1;37mdestroy                             [0m
+[1;30m
+CONTROLLER: [1;37mrobots_txt[0m
+[1;36m                                     [0m | [1;33m GET  [0m | [1;31m/robots.txt([1;34m.:format[1;31m)                                        [0m | [1;37mindex                               [0m
