@@ -1,4 +1,4 @@
-# Extracted using https://github.com/nicooga/color_routes 
+# Extracted (from v0.9.8.5) using https://github.com/nicooga/color_routes 
 #	RAILS_ENV=production bundle exec rake routes >> myroutes_colored.txt
 
 [1;30m

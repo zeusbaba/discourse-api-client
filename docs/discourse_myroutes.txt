@@ -1,4 +1,4 @@
-# Extracted using standard way: 
+# Extracted (from v0.9.8.5) using standard way: 
 #	RAILS_ENV=production bundle exec rake routes >> myroutes.txt
 
                                Prefix Verb     URI Pattern                                                   Controller#Action
