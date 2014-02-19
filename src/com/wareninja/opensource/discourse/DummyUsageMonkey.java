@@ -19,22 +19,29 @@ import com.wareninja.opensource.discourse.utils.ResponseModel;
  * simple class to... 
  * make calls for quick validation of each implemented function! 
  */
-public class DummyMonkey {
+public class DummyUsageMonkey {
 
+	final static String TAG = DummyUsageMonkey.class.getSimpleName();
+	
 	/**
 	 * @param args
 	 * api_url api_key api_username
 	 */
 	public static void main(String[] args) {
 		
+		if (args.length<3) {
+			System.out.println(TAG+" " + "missing parameters... Read the source Luke! ");
+			System.out.println(TAG+" example parameters: " + "api_url api_key api_username");
+			return;
+		}
+		
 		DiscourseApiClient mDiscourseApiClient = new DiscourseApiClient(
-				args[0] // api_url  e.g. http://your_domain.com
-				, args[1] // api_key you get from discourse admin
-				, args[2] // api_username  you make calls on behalf of
+				args[0] // api_url  : e.g. http://your_domain.com
+				, args[1] // api_key : you get from discourse admin
+				, args[2] // api_username : you make calls on behalf of
 				);
 		
 		Map<String, String> parameters = null;
-		
 		
 		
 		/*
