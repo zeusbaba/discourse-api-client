@@ -19,9 +19,9 @@ import com.wareninja.opensource.discourse.utils.ResponseModel;
  * simple class to... 
  * make calls for quick validation of each implemented function! 
  */
-public class DummyUsageMonkey {
+public class MonkeyUsageExample {
 
-	final static String TAG = DummyUsageMonkey.class.getSimpleName();
+	final static String TAG = MonkeyUsageExample.class.getSimpleName();
 	
 	/**
 	 * @param args
@@ -43,7 +43,7 @@ public class DummyUsageMonkey {
 		
 		Map<String, String> parameters = null;
 		
-		
+		// --- createUser ---
 		/*
 		// createUser parameters MUST already contain
 		'name': name,
@@ -79,6 +79,8 @@ public class DummyUsageMonkey {
 			Thread.sleep(3000);
 		} catch (Exception ex) {}
 		
+		
+		// --- searchForUser ---
 		parameters = new HashMap<String, String>();
 		parameters.put("username", "test_monkey_1");
 		mDiscourseApiClient.searchForUser(parameters, new ResponseListener(){
@@ -100,6 +102,7 @@ public class DummyUsageMonkey {
 			}
 		});
 		
+		// --- search ---
 		parameters = new HashMap<String, String>();
 		parameters.put("term", "test_monkey");
 		mDiscourseApiClient.search(parameters, new ResponseListener(){
@@ -121,6 +124,7 @@ public class DummyUsageMonkey {
 			}
 		});
 		
+		// --- getUser ---
 		parameters = new HashMap<String, String>();
 		mDiscourseApiClient.getUser(parameters, new ResponseListener(){
 
@@ -141,6 +145,8 @@ public class DummyUsageMonkey {
 			}
 		});
 		
+		
+		// --- getCreatedTopics ---
 		parameters = new HashMap<String, String>();
 		mDiscourseApiClient.getCreatedTopics(parameters, new ResponseListener(){
 

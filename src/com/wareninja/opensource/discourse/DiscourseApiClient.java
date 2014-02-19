@@ -57,7 +57,8 @@ public class DiscourseApiClient {
 //USERS
 /////////////////////
 
-	/*
+	/**
+	 * getUser
 	 * parameters empty: if you want to get the current authenticated user (api_key user)
 	 * parameters.put("username",username): to get specific user
 	 */
@@ -98,12 +99,13 @@ public class DiscourseApiClient {
 		}
 	}
 	
-	/*
-	// parameters MUST already contain
-	'name': name,
-    'email': email,
-    'username': username,
-    'password': password,
+	/**
+	 * createUser
+	 * parameters MUST already contain
+	 * 'name': name,
+	 * 'email': email,
+	 * 'username': username,
+	 * 'password': password
     */
 	public void createUser(Map<String, String> parameters, ResponseListener responseListener) {
 		
@@ -175,16 +177,19 @@ public class DiscourseApiClient {
 			responseListener.onError_wMeta(responseModel.meta);
 		}
 	}
+	
+	/** fetchConfirmationValue
+	 * used right before createUser
+	 * endpoint: users/hp.json
+	 * discourse api should bypass the honeypot since it is a trusted user (confirmed via api key)
+	 */
 	protected String fetchConfirmationValue() {
 		return fetchConfirmationValue( new HashMap<String, String>() );
 	}
 	protected String fetchConfirmationValue(Map<String, String> parameters) {
 		
 		final String TAG = "fetchConfirmationValue";
-		/*// used right before createUser
-		 * endpoint: users/hp.json
-		 * discourse api should bypass the honeypot since it is a trusted user (confirmed via api key)
-		 */
+		
 		
 		MyWebClient webClient = new MyWebClient(this.api_url);
 		if (parameters==null) parameters = new HashMap<String, String>();
@@ -209,6 +214,13 @@ public class DiscourseApiClient {
 			return "ERROR|"+responseModel.meta.errorDetail;
 		}
 	}
+	
+	/**
+	 * approveUser
+	 * parameters MUST  contain
+	 * 'userid': userid,
+	 * 'username': username
+    */
 	public void approveUser(Map<String, String> parameters, ResponseListener responseListener) {
 		final String TAG = "approveUser";
 		/*
@@ -240,6 +252,13 @@ public class DiscourseApiClient {
 			responseListener.onError_wMeta(responseModel.meta);
 		}
 	}
+	
+	/**
+	 * activateUser
+	 * parameters MUST  contain
+	 * 'userid': userid,
+	 * 'username': username
+    */
 	public void activateUser(Map<String, String> parameters, ResponseListener responseListener) {
 		final String TAG = "activateUser"; 
 		/*
@@ -271,6 +290,13 @@ public class DiscourseApiClient {
 			responseListener.onError_wMeta(responseModel.meta);
 		}
 	}
+	
+	/**
+	 * deleteUser
+	 * parameters MUST  contain
+	 * 'userid': userid,
+	 * 'username': username
+    */
 	public void deleteUser(Map<String, String> parameters, ResponseListener responseListener) {
 		final String TAG = "deleteUser";
 		// TODO: 
@@ -279,17 +305,27 @@ public class DiscourseApiClient {
     	{ context: 'admin/users/' + username },
 		 */
 	}
+	
+	/**
+	 * loginUser
+	 * parameters MUST  contain
+	 * 'username': username
+	 * 'password': password
+    */
 	public void loginUser(Map<String, String> parameters, ResponseListener responseListener) {
 		
 		final String TAG = "loginUser";
+		// this.post('session', { 'login': username, 'password': password },
 		
 		MyWebClient webClient = new MyWebClient(this.api_url);
 		if (parameters==null) parameters = new HashMap<String, String>();
-		if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
-		if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
+		//if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
+		//if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
+		
 		
 		String methodName = "";
 		methodName += "/session";
+		methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only
 		
 		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
@@ -306,6 +342,12 @@ public class DiscourseApiClient {
 			responseListener.onError_wMeta(responseModel.meta);
 		}
 	}
+	
+	/**
+	 * logoutUser
+	 * parameters MUST  contain
+	 * 'username': username
+    */
 	public void logoutUser(Map<String, String> parameters, ResponseListener responseListener) {
 		final String TAG = "logoutUser";
 		// TODO: 
@@ -320,6 +362,12 @@ public class DiscourseApiClient {
 /////////////////////
 //SEARCH
 /////////////////////
+	
+	/**
+	 * searchForUser
+	 * parameters MUST  contain
+	 * 'username': username
+    */
 	public void searchForUser(Map<String, String> parameters, ResponseListener responseListener) {
 		// TODO:
 		/*
@@ -358,6 +406,12 @@ public class DiscourseApiClient {
 			responseListener.onError_wMeta(responseModel.meta);
 		}
 	}
+	
+	/**
+	 * search
+	 * parameters MUST  contain
+	 * 'term': term
+    */
 	public void search(Map<String, String> parameters, ResponseListener responseListener) {
 		// TODO:
 		/*
@@ -402,6 +456,14 @@ this.get('search.json', { term: term }, function(error, body, httpCode) {
 //TOPICS AND REPLIES
 ///////////////////////
 	
+	/**
+	 * createTopic
+	 * parameters MUST  contain
+	 * 'title': title
+	 * 'raw': raw
+	 * 'category': category
+	 * 
+    */
 	public void createTopic(Map<String, String> parameters, ResponseListener responseListener) {
 		
 		final String TAG = "createTopic";
@@ -414,6 +476,7 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 		if (parameters==null) parameters = new HashMap<String, String>();
 		//if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
 		//if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
+		parameters.put("archetype", "regular");
 		
 		String methodName = "";
 		methodName += "/posts";
@@ -434,6 +497,14 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 			responseListener.onError_wMeta(responseModel.meta);
 		}
 	}
+	
+	/**
+	 * getCreatedTopics
+	 * parameters MAY  contain
+	 * 'username': username
+	 * if not, pulls topics of api_username
+	 * 
+    */
 	public void getCreatedTopics(Map<String, String> parameters, ResponseListener responseListener) {
 		
 		final String TAG = "getCreatedTopics";
@@ -447,7 +518,13 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		
 		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
-		if (!TextUtils.isEmpty(this.api_username)) parameters.put("username", this.api_username);
+		
+		if (parameters.containsKey("username")) {
+			parameters.put("username", parameters.get("username"));
+		}
+		else if (!TextUtils.isEmpty(this.api_username)) {
+			parameters.put("username", this.api_username);
+		}
 		//parameters.put("filter", FILTER.NEW_TOPIC.name());
 		String responseStr = webClient.get(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();

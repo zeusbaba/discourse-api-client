@@ -25,6 +25,7 @@
 package com.wareninja.opensource.discourse.utils;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -393,7 +394,10 @@ public class MyWebClient {
 		for (RequestParameter requestParam: requestParams) {
 			try {
 				if ( !requestParam.getKey().equalsIgnoreCase("api_key") && !requestParam.getKey().equalsIgnoreCase("api_username")) {
-					jsonObject.addProperty(requestParam.getKey(), requestParam.getValueStr());
+					jsonObject.addProperty(
+							requestParam.getKey()
+							, URLEncoder.encode(requestParam.getValueStr(), "UTF-8")
+							);
 				}
 			} catch (Exception e) {
 				System.err.println(TAG+"|"+ "Exception : " + e);
