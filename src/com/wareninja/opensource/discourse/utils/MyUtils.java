@@ -69,6 +69,11 @@ public final class MyUtils {
 		    .create();
 	}
 
+	/**
+	 * getShortFormattedDate 
+	 * 
+	 * return in string format: yyyy-MM-dd
+	 */
 	public static String getShortFormattedDate() {
 		return getShortFormattedDate(System.currentTimeMillis());
 	}
@@ -89,6 +94,11 @@ public final class MyUtils {
 		return resp;
 	}
 	 
+	/**
+	 * getFormattedDate 
+	 * 
+	 * return in string format: yyyy-MM-dd'T'HH:mm:ssZ
+	 */
 	public static String getFormattedDate() {
 		return getFormattedDate(System.currentTimeMillis());
 	}

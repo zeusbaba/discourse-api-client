@@ -6,11 +6,12 @@
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
-package com.wareninja.opensource.discourse;
+package com.wareninja.opensource;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.wareninja.opensource.discourse.DiscourseApiClient;
 import com.wareninja.opensource.discourse.utils.ResponseListener;
 import com.wareninja.opensource.discourse.utils.ResponseMeta;
 import com.wareninja.opensource.discourse.utils.ResponseModel;
@@ -19,9 +20,9 @@ import com.wareninja.opensource.discourse.utils.ResponseModel;
  * simple class to... 
  * make calls for quick validation of each implemented function! 
  */
-public class MonkeyUsageExample {
+public class ExampleUsage {
 
-	final static String TAG = MonkeyUsageExample.class.getSimpleName();
+	final static String TAG = ExampleUsage.class.getSimpleName();
 	
 	/**
 	 * @param args
