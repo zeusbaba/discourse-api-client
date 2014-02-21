@@ -15,10 +15,8 @@ import org.apache.http.util.TextUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.wareninja.opensource.discourse.utils.MyUtils;
 import com.wareninja.opensource.discourse.utils.ResponseListener;
 import com.wareninja.opensource.discourse.utils.MyWebClient;
-import com.wareninja.opensource.discourse.utils.ResponseMeta;
 import com.wareninja.opensource.discourse.utils.ResponseModel;
 
 public class DiscourseApiClient {
@@ -153,7 +151,7 @@ public class DiscourseApiClient {
 			}
 			
 			String methodName = "";
-			methodName += "/users";
+			methodName += "/users";//"/users";
 			methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
 			
 			responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName + " | parameters: "+parameters );
@@ -223,7 +221,7 @@ public class DiscourseApiClient {
     */
 	public void approveUser(Map<String, String> parameters, ResponseListener responseListener) {
 		final String TAG = "approveUser";
-		/*
+		/* admin_user_approve PUT      /admin/users/:user_id/approve(.:format)
 		this.put('admin/users/' + id + '/approve',
     	{ context: 'admin/users/' + username },
 		 */
@@ -234,7 +232,7 @@ public class DiscourseApiClient {
 		
 		String methodName = "";
 		methodName += "/admin/users/" + parameters.get("userid") + "/approve";
-		methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
+		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		parameters.put("context", "/admin/users/" + parameters.get("username"));
 		
 		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
@@ -261,7 +259,7 @@ public class DiscourseApiClient {
     */
 	public void activateUser(Map<String, String> parameters, ResponseListener responseListener) {
 		final String TAG = "activateUser"; 
-		/*
+		/* admin_user_activate PUT      /admin/users/:user_id/activate(.:format)
 		this.put('admin/users/' + id + '/activate',
     	{ context: 'admin/users/' + username },
 		 */
@@ -272,12 +270,91 @@ public class DiscourseApiClient {
 		
 		String methodName = "";
 		methodName += "/admin/users/" + parameters.get("userid") + "/activate";
-		methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
-		parameters.put("context", "/admin/users/" + parameters.get("username"));
+		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
+		//-parameters.put("context", "/admin/users/" + parameters.get("username"));
 		
 		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.put(methodName, parameters);
+		ResponseModel responseModel = new ResponseModel();
+		responseModel.meta.code = webClient.getHttpResponseCode();
+		responseModel.data = responseStr;
+		if (responseModel.meta.code<=201) { // success
+			responseListener.onComplete_wModel(responseModel);
+		}
+		else {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+	}
+	
+	/**
+	 * trustUser
+	 * parameters MUST  contain
+	 * 'userid': userid,
+	 * 'level': 0
+	 * -> level can be: 0 (new user), 1 (basic user), 2 (regular user), 3 (leader), 4 (elder)
+    */
+	public void trustUser(Map<String, String> parameters, ResponseListener responseListener) {
+		final String TAG = "trustUser"; 
+		/*  admin_user_trust_level PUT      /admin/users/:user_id/trust_level(.:format)
+		 * 
+		 */
+		MyWebClient webClient = new MyWebClient(this.api_url);
+		if (parameters==null) parameters = new HashMap<String, String>();
+		//if (!TextUtils.isEmpty(this.api_key)) parameters.put("api_key", this.api_key);
+		//if (!TextUtils.isEmpty(this.api_username)) parameters.put("api_username", this.api_username);
+		
+		String methodName = "";
+		methodName += "/admin/users/" + parameters.get("userid") + "/trust_level";
+		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
+		webClient.enrichMethodName_addParam(methodName
+				, "level"
+				, parameters.containsKey("level")?parameters.get("level"):"0"
+				);
+		//parameters.put("level", parameters.containsKey("level")?parameters.get("level"):"0");
+		
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		
+		String responseStr = webClient.put(methodName, parameters);
+		ResponseModel responseModel = new ResponseModel();
+		responseModel.meta.code = webClient.getHttpResponseCode();
+		responseModel.data = responseStr;
+		if (responseModel.meta.code<=201) { // success
+			responseListener.onComplete_wModel(responseModel);
+		}
+		else {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+	}
+	
+	/**
+	 * generateApiKey :  generate api_key for specific user!
+	 * parameters MUST  contain
+	 * 'userid': userid,
+    */
+	public void generateApiKey(Map<String, String> parameters, ResponseListener responseListener) {
+		final String TAG = "generateApiKey"; 
+		/*  admin_user_generate_api_key POST     /admin/users/:user_id/generate_api_key(.:format) 
+		 */
+		MyWebClient webClient = new MyWebClient(this.api_url);
+		if (parameters==null) parameters = new HashMap<String, String>();
+		
+		String methodName = "";
+		methodName += "/admin/users/" + parameters.get("userid") + "/generate_api_key";
+		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
+		webClient.enrichMethodName_addParam(methodName
+				, "level"
+				, parameters.containsKey("level")?parameters.get("level"):"0"
+				);
+		//parameters.put("level", parameters.containsKey("level")?parameters.get("level"):"0");
+		
+		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		
+		String responseStr = webClient.post(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;

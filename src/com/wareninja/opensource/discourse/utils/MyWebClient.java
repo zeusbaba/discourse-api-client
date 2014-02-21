@@ -213,6 +213,8 @@ public class MyWebClient {
 			requestUrl = webServiceUrl + methodName;
 		}
 		
+		System.out.println("POST requestUrl : " + requestUrl);
+		
 		httpPost = new HttpPost(requestUrl);
 		httpPost.setConfig(httpRequestConfig);
 		for (RequestHeader requestHeader:requestHeaders) {
@@ -270,6 +272,8 @@ public class MyWebClient {
 			requestUrl = webServiceUrl + methodName;
 		}
 		
+		System.out.println("PUT requestUrl : " + requestUrl);
+		
 		httpPut = new HttpPut(requestUrl);
 		httpPut.setConfig(httpRequestConfig);
 		for (RequestHeader requestHeader:requestHeaders) {
@@ -292,7 +296,9 @@ public class MyWebClient {
 				responseStr = responseEntity!=null ? EntityUtils.toString(responseEntity) : "";
             } else {
                 //throw new ClientProtocolException("Unexpected response status: " + status);
-            	responseStr = httpResponseCode + "|"+"ERROR";
+            	responseStr = httpResponseCode + "|"+"ERROR" 
+            			+ " | "+(responseEntity!=null ? EntityUtils.toString(responseEntity) : "")
+                	;
             }
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -414,14 +420,22 @@ public class MyWebClient {
 		
 		return enrichMethodName(methodName, parameters);
 	}
+	public String enrichMethodName_addParam(String methodName, String param_key, String param_val) {
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put(param_key, param_val);
+		
+		return enrichMethodName(methodName, parameters);
+	}
 	public String enrichMethodName(String methodName, Map<String, String> parameters) {
 		
 		methodName += (!methodName.contains("?") && parameters.size()>0) ? "?":"";
 		for (String key : parameters.keySet()) {
 			
-			if ( key.equalsIgnoreCase("api_key") || key.equalsIgnoreCase("api_username")) {
+			methodName += key+"="+parameters.get(key) + "&";
+			/*if ( key.equalsIgnoreCase("api_key") || key.equalsIgnoreCase("api_username")) {
 				methodName += key+"="+parameters.get(key) + "&";
-			}
+			}*/
 		}
 		if (methodName.endsWith("&")) methodName = methodName.substring(0, methodName.length()-1);
 		
