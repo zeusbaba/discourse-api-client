@@ -6,7 +6,6 @@
  *  disclaimer: I code for fun, dunno what I'm coding about :-)
  */
 
-package com.wareninja.opensource;
 
 import java.util.HashMap;
 import java.util.Map;
