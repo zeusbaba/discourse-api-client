@@ -10,8 +10,9 @@ Goal is to implement simple & readable Java code, reusable to communicate with D
 **How to use?**   
 * *option.1:* you can download the latest jar from releases    
 * *option.2:* git clone, then import as maven project!     
-mvn clean install    
+```mvn clean install```    
     will generate the snapshot jar library.      
 
-Example usage? -> read the source luke!   
+Example usage? [here it is!] (https://github.com/wareninja/discourse-api-client/blob/master/src/ExampleUsage.java)    
+... and read the source luke!   
 
