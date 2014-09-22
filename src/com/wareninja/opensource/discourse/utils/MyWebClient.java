@@ -402,7 +402,7 @@ public class MyWebClient {
 				if ( !requestParam.getKey().equalsIgnoreCase("api_key") && !requestParam.getKey().equalsIgnoreCase("api_username")) {
 					jsonObject.addProperty(
 							requestParam.getKey()
-							, URLEncoder.encode(requestParam.getValueStr(), "UTF-8")
+							, ""+requestParam.getValue()//, requestParam.getValueStr()
 							);
 				}
 			} catch (Exception e) {

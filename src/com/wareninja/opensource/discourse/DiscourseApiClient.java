@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.wareninja.opensource.discourse.utils.ResponseListener;
 import com.wareninja.opensource.discourse.utils.MyWebClient;
+import com.wareninja.opensource.discourse.utils.ResponseMeta;
 import com.wareninja.opensource.discourse.utils.ResponseModel;
 
 public class DiscourseApiClient {
@@ -57,11 +58,26 @@ public class DiscourseApiClient {
 
 	/**
 	 * getUser
+	 * 
 	 * parameters empty: if you want to get the current authenticated user (api_key user)
 	 * parameters.put("username",username): to get specific user
+	 * 
+	 * @param parameters
+	 * @param responseListener
 	 */
 	public void getUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getUser(parameters);
 		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel getUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "getUser";
 		
 		// example: https://base_domain/users/<username>.json?api_key=<key>&api_username=<caller_username>
@@ -81,13 +97,13 @@ public class DiscourseApiClient {
 			methodName += "/users/" + this.api_username + ".json";
 		}
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.get(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
@@ -95,6 +111,13 @@ public class DiscourseApiClient {
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
 		}
+		*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
+		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -106,7 +129,18 @@ public class DiscourseApiClient {
 	 * 'password': password
     */
 	public void createUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = createUser(parameters);
 		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel createUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "createUser";
 		
 		ResponseModel responseModel = new ResponseModel();
@@ -116,8 +150,8 @@ public class DiscourseApiClient {
 			
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = "Missing parameters!!!";
-			responseListener.onError_wMeta(responseModel.meta);
-			return;
+			//responseListener.onError_wMeta(responseModel.meta);
+			//return;
 		}
 		
 		// step.1: fetchConfirmationValue
@@ -154,12 +188,12 @@ public class DiscourseApiClient {
 			methodName += "/users";//"/users";
 			methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only!
 			
-			responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName + " | parameters: "+parameters );
+			//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName + " | parameters: "+parameters );
 			
 			String responseStr = webClient.post(methodName, parameters);
 			responseModel.meta.code = webClient.getHttpResponseCode();
 			responseModel.data = responseStr;
-			if (responseModel.meta.code<=201) { // success
+			/*if (responseModel.meta.code<=201) { // success
 				responseListener.onComplete_wModel(responseModel);
 			}
 			else {// error occured!
@@ -167,13 +201,21 @@ public class DiscourseApiClient {
 				responseModel.meta.errorDetail = responseStr;
 				responseListener.onError_wMeta(responseModel.meta);
 			}
+			*/
+			if (responseModel.meta.code>201) {// error occured!
+				responseModel.meta.errorType = "general";
+				responseModel.meta.errorDetail = responseStr;
+				//responseListener.onError_wMeta(responseModel.meta);
+			}
 		}
 		else {// ERROR!!!
 			responseModel.meta.code = 500;
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = confirmationValue;
-			responseListener.onError_wMeta(responseModel.meta);
+			//responseListener.onError_wMeta(responseModel.meta);
 		}
+		
+		return responseModel;
 	}
 	
 	/** fetchConfirmationValue
@@ -220,6 +262,18 @@ public class DiscourseApiClient {
 	 * 'username': username
     */
 	public void approveUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = approveUser(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel approveUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "approveUser";
 		/* admin_user_approve PUT      /admin/users/:user_id/approve(.:format)
 		this.put('admin/users/' + id + '/approve',
@@ -235,20 +289,26 @@ public class DiscourseApiClient {
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		parameters.put("context", "/admin/users/" + parameters.get("username"));
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.put(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -256,8 +316,23 @@ public class DiscourseApiClient {
 	 * parameters MUST  contain
 	 * 'userid': userid,
 	 * 'username': username
+	 * 
+	 * @param parameters
+	 * @param responseListener
     */
 	public void activateUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = activateUser(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel activateUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "activateUser"; 
 		/* admin_user_activate PUT      /admin/users/:user_id/activate(.:format)
 		this.put('admin/users/' + id + '/activate',
@@ -273,20 +348,26 @@ public class DiscourseApiClient {
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		//-parameters.put("context", "/admin/users/" + parameters.get("username"));
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.put(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -297,6 +378,18 @@ public class DiscourseApiClient {
 	 * -> level can be: 0 (new user), 1 (basic user), 2 (regular user), 3 (leader), 4 (elder)
     */
 	public void trustUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = trustUser(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel trustUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "trustUser"; 
 		/*  admin_user_trust_level PUT      /admin/users/:user_id/trust_level(.:format)
 		 * 
@@ -315,20 +408,26 @@ public class DiscourseApiClient {
 				);
 		//parameters.put("level", parameters.containsKey("level")?parameters.get("level"):"0");
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.put(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -337,6 +436,18 @@ public class DiscourseApiClient {
 	 * 'userid': userid,
     */
 	public void generateApiKey(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = generateApiKey(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel generateApiKey(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "generateApiKey"; 
 		/*  admin_user_generate_api_key POST     /admin/users/:user_id/generate_api_key(.:format) 
 		 */
@@ -352,20 +463,26 @@ public class DiscourseApiClient {
 				);
 		//parameters.put("level", parameters.containsKey("level")?parameters.get("level"):"0");
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.post(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -375,12 +492,27 @@ public class DiscourseApiClient {
 	 * 'username': username
     */
 	public void deleteUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = deleteUser(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel deleteUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
 		// TODO: 
 		/*
 		this.delete(id + '.json',
     	{ context: 'admin/users/' + username },
 		 */
+		
+		return responseModel;
 	}
 	
 	/**
@@ -390,7 +522,18 @@ public class DiscourseApiClient {
 	 * 'password': password
     */
 	public void loginUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = loginUser(parameters);
 		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel loginUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "loginUser";
 		// this.post('session', { 'login': username, 'password': password },
 		
@@ -404,20 +547,26 @@ public class DiscourseApiClient {
 		methodName += "/session";
 		methodName = webClient.enrichMethodName(methodName, this.api_key, "");// append api_key only
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.post(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -426,13 +575,28 @@ public class DiscourseApiClient {
 	 * 'username': username
     */
 	public void logoutUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = logoutUser(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel logoutUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		final String TAG = "logoutUser";
+		ResponseModel responseModel = new ResponseModel();
 		// TODO: 
 		/*
 		 this.delete('session/' + username, {}, function(error, body, httpCode) {
 		    callback(error, body, httpCode);
 		  });
 		 */
+		
+		return responseModel;
 	}
 	
 	
@@ -446,6 +610,18 @@ public class DiscourseApiClient {
 	 * 'username': username
     */
 	public void searchForUser(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = searchForUser(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel searchForUser(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		// TODO:
 		/*
 		this.get('users/search/users.json', { term: username }, function(error, body, httpCode) {
@@ -468,20 +644,26 @@ public class DiscourseApiClient {
 			parameters.put("term", this.api_username);
 		}
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.get(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -490,7 +672,18 @@ public class DiscourseApiClient {
 	 * 'term': term
     */
 	public void search(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO:
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = search(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel search(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		/*
 this.get('search.json', { term: term }, function(error, body, httpCode) {
     callback(error, body, httpCode);
@@ -512,20 +705,26 @@ this.get('search.json', { term: term }, function(error, body, httpCode) {
 			parameters.put("term", "");
 		}
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.get(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	
@@ -541,7 +740,46 @@ this.get('search.json', { term: term }, function(error, body, httpCode) {
 	 * 'category': category
 	 * 
     */
+	/*
+https://github.com/discourse/discourse/blob/master/lib/post_creator.rb
+ # Acceptable options:
+  #
+  #   raw                     - raw text of post
+  #   image_sizes             - We can pass a list of the sizes of images in the post as a shortcut.
+  #   invalidate_oneboxes     - Whether to force invalidation of oneboxes in this post
+  #   acting_user             - The user performing the action might be different than the user
+  #                             who is the post "author." For example when copying posts to a new
+  #                             topic.
+  #   created_at              - Post creation time (optional)
+  #   auto_track              - Automatically track this topic if needed (default true)
+  #
+  #   When replying to a topic:
+  #     topic_id              - topic we're replying to
+  #     reply_to_post_number  - post number we're replying to
+  #
+  #   When creating a topic:
+  #     title                 - New topic title
+  #     archetype             - Topic archetype
+  #     category              - Category to assign to topic
+  #     target_usernames      - comma delimited list of usernames for membership (private message)
+  #     target_group_names    - comma delimited list of groups for membership (private message)
+  #     meta_data             - Topic meta data hash
+  #     cooking_options       - Options for rendering the text
+  #
+	 */
 	public void createTopic(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = createTopic(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel createTopic(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		
 		final String TAG = "createTopic";
 		/*
@@ -559,20 +797,26 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 		methodName += "/posts";
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		String responseStr = webClient.post(methodName, parameters);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
 		}
+		
+		return responseModel;
 	}
 	
 	/**
@@ -583,6 +827,18 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 	 * 
     */
 	public void getCreatedTopics(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getCreatedTopics(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel getCreatedTopics(Map<String, String> parameters) {
+		// SYNCHRONOUS function
 		
 		final String TAG = "getCreatedTopics";
 		MyWebClient webClient = new MyWebClient(this.api_url);
@@ -594,7 +850,7 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 		methodName += "/user_actions.json";
 		methodName = webClient.enrichMethodName(methodName, this.api_key, this.api_username);// append api_key and api_username
 		
-		responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
+		//responseListener.onBegin("BEGIN"+"|"+TAG+"| methodName:"+methodName );
 		
 		if (parameters.containsKey("username")) {
 			parameters.put("username", parameters.get("username"));
@@ -607,56 +863,278 @@ this.post('posts', { 'title': title, 'raw': raw, 'category': category, 'archetyp
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.meta.code = webClient.getHttpResponseCode();
 		responseModel.data = responseStr;
-		if (responseModel.meta.code<=201) { // success
+		/*if (responseModel.meta.code<=201) { // success
 			responseListener.onComplete_wModel(responseModel);
 		}
 		else {// error occured!
 			responseModel.meta.errorType = "general";
 			responseModel.meta.errorDetail = responseStr;
 			responseListener.onError_wMeta(responseModel.meta);
+		}*/
+		if (responseModel.meta.code>201) {// error occured!
+			responseModel.meta.errorType = "general";
+			responseModel.meta.errorDetail = responseStr;
+		}
+		
+		return responseModel;
+	}
+	
+	
+	public void replyToTopic(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = replyToTopic(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
 		}
 	}
-	public void replyToTopic(Map<String, String> parameters, ResponseListener responseListener) {
+	public ResponseModel replyToTopic(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
 		// TODO: 
+		
+		
+		return responseModel;
 	}
+	
 	public void replyToPost(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = replyToPost(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
 	}
+	public ResponseModel replyToPost(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
 	public void getTopicAndReplies(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getTopicAndReplies(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
 	}
+	public ResponseModel getTopicAndReplies(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
 	public void deleteTopic(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = deleteTopic(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
 	}
+	public ResponseModel deleteTopic(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
 	public void updateTopic(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = updateTopic(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
 	}
+	public ResponseModel updateTopic(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
 	public void updatePost(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = updatePost(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
 	}
+	public ResponseModel updatePost(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
 	
 /////////////////////
 //PRIVATE MESSAGES
 /////////////////////
 	public void createPrivateMessage(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = createPrivateMessage(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
 	}
-	public void getPrivateMessages(Map<String, String> parameters, ResponseListener responseListener) {
+	public ResponseModel createPrivateMessage(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
 		// TODO: 
-	}
-	public void getPrivateMessageThread(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
-	}
-	public void getSentPrivateMessages(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
-	}
-	public void getReceivedPrivateMessages(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
-	}
-	public void replyToPrivateMessage(Map<String, String> parameters, ResponseListener responseListener) {
-		// TODO: 
+		
+		
+		return responseModel;
 	}
 	
+	public void getPrivateMessages(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getPrivateMessages(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel getPrivateMessages(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
+	public void getPrivateMessageThread(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getPrivateMessageThread(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel getPrivateMessageThread(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
+	public void getSentPrivateMessages(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getSentPrivateMessages(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel getSentPrivateMessages(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
+	public void getReceivedPrivateMessages(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = getReceivedPrivateMessages(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel getReceivedPrivateMessages(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
+	
+	public void replyToPrivateMessage(Map<String, String> parameters, ResponseListener responseListener) {
+		// ASYNCHRONOUS function
+		ResponseModel responseModel = replyToPrivateMessage(parameters);
+		
+		if (responseModel.data==null || responseModel.meta.code>201) {
+			responseListener.onError_wMeta(responseModel.meta);
+		}
+		else {
+			responseListener.onComplete_wModel(responseModel);
+		}
+	}
+	public ResponseModel replyToPrivateMessage(Map<String, String> parameters) {
+		// SYNCHRONOUS function
+		final String TAG = "deleteUser";
+		ResponseModel responseModel = new ResponseModel();
+		// TODO: 
+		
+		
+		return responseModel;
+	}
 
 	
 }

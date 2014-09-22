@@ -40,7 +40,9 @@ public class StringRequestParameter implements Serializable, RequestParameter {
 	}
 	public String getValueStr() {
 		try {
-			return String.format("%s", URLEncoder.encode(String.valueOf(value), "UTF-8"));
+			return String.format("%s"
+					, URLEncoder.encode(String.valueOf(value), "UTF-8")
+					);
 		} catch (UnsupportedEncodingException e) {
 			return String.format("%s", value);
 		}

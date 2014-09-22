@@ -16,9 +16,7 @@ public class ResponseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public ResponseMeta meta;// contains meta information
-
-	public Object data;// main: contains JsonObject or JsonArray of the response
-
+	public Object data;// main body: contains JsonObject or JsonArray of the response
     //public Object notification;// extra: JsonObject used for notifications
 	
     public ResponseModel() {
@@ -40,12 +38,9 @@ public class ResponseModel implements Serializable {
   "meta": {
     "code": 200,
      ...errorType and errorDetail... only IF there is any error aka code>201
-     ... paging... only IF there are more data to retrieve; happens only if the request contains paging params (index, limit)
-     
   },
   "data": [
-     ...results... 
-     		as JSON Array (in our case, elements are jsonObjects)
+     ...results... JsonObject OR JsonArray depending on the endpoint
   ]
 }
 

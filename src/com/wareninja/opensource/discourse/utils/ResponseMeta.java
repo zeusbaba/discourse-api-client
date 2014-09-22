@@ -50,7 +50,7 @@ public class ResponseMeta implements Serializable {
 /*
 {
   "meta": {
-    "code": 200
+    "code": 400
     , "errorType": "blabla"
     , "errorDetail": "blbla"
   },
