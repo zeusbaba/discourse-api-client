@@ -86,6 +86,7 @@ public class MyWebClient {
 		initBase();
 	}*/
 	protected void initBase() {
+        //Initiate SSLSocketFactory. "java.lang.IllegalArgumentException: Item may not be null" error fixed.
         SSLContext sslContext = SSLContexts.createSystemDefault();
         SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
                 sslContext,
