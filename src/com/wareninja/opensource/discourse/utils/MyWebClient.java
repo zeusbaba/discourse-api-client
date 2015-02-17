@@ -24,12 +24,9 @@
 
 package com.wareninja.opensource.discourse.utils;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import android.util.Log;
+
+import com.google.gson.JsonObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -39,16 +36,24 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.ContentType;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.http.util.TextUtils;
 
-import com.google.gson.JsonObject;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import javax.net.ssl.SSLContext;
 
 public class MyWebClient {
 
@@ -81,11 +86,20 @@ public class MyWebClient {
 		initBase();
 	}*/
 	protected void initBase() {
-		httpClient = HttpClients.createDefault();
-		httpRequestConfig = RequestConfig.custom()
-		        .setSocketTimeout(TIMEOUT)
-		        .setConnectTimeout(TIMEOUT)
-		        .build();
+        //Initiate SSLSocketFactory. "java.lang.IllegalArgumentException: Item may not be null" error fixed.
+        SSLContext sslContext = SSLContexts.createSystemDefault();
+        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+                sslContext,
+                SSLConnectionSocketFactory.STRICT_HOSTNAME_VERIFIER);
+
+		httpClient = HttpClientBuilder.create()
+            .setSSLSocketFactory(sslsf)
+                .build();
+
+//		httpRequestConfig = RequestConfig.custom()
+//		        .setSocketTimeout(TIMEOUT)
+//		        .setConnectTimeout(TIMEOUT)
+//		        .build();
 		
 		localContext = new BasicHttpContext();
 	}
@@ -162,7 +176,7 @@ public class MyWebClient {
 		HttpGet httpget = new HttpGet(uri);
 		 */
 		httpGet = new HttpGet(requestUrl);
-		httpGet.setConfig(httpRequestConfig);
+		// httpGet.setConfig(httpRequestConfig);
 		for (RequestHeader requestHeader:requestHeaders) {
 			httpGet.addHeader(requestHeader.getKey(), requestHeader.getValue());
 		}
@@ -216,19 +230,24 @@ public class MyWebClient {
 		System.out.println("POST requestUrl : " + requestUrl);
 		
 		httpPost = new HttpPost(requestUrl);
-		httpPost.setConfig(httpRequestConfig);
+		//httpPost.setConfig(httpRequestConfig);
 		for (RequestHeader requestHeader:requestHeaders) {
 			httpPost.addHeader(requestHeader.getKey(), requestHeader.getValue());
 		}
 		httpPost.addHeader("Accept", "text/html,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5");
 		
 		// NOTE: by default we post ONLY json data! 
-		StringEntity requestEntity = new StringEntity( 
-				jsonBodyStr
-				, ContentType.create("application/json", "UTF-8")
-				);
-		httpPost.setEntity(requestEntity);
-		
+        StringEntity requestEntity = null;
+        try {
+            //StringEntity(String,ContentType) is not supported by HttpClient Android 4.3.5
+            requestEntity = new StringEntity(jsonBodyStr,"UTF-8");
+            httpPost.setEntity(requestEntity);
+            httpPost.setHeader("Content-type", "application/json");
+            Log.v("httpPost",jsonBodyStr);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
 		try {
 			httpResponse = httpClient.execute(httpPost);
 			httpResponseCode = httpResponse.getStatusLine().getStatusCode(); 
@@ -275,20 +294,22 @@ public class MyWebClient {
 		System.out.println("PUT requestUrl : " + requestUrl);
 		
 		httpPut = new HttpPut(requestUrl);
-		httpPut.setConfig(httpRequestConfig);
+		//httpPut.setConfig(httpRequestConfig);
 		for (RequestHeader requestHeader:requestHeaders) {
 			httpPut.addHeader(requestHeader.getKey(), requestHeader.getValue());
 		}
 		httpPut.addHeader("Accept", "text/html,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5");
 		
 		// NOTE: by default we post ONLY json data! 
-		StringEntity requestEntity = new StringEntity( 
-				jsonBodyStr
-				, ContentType.create("application/json", "UTF-8")
-				);
-		httpPut.setEntity(requestEntity);
-		
-		try {
+        try {
+            //StringEntity(String,ContentType) is not supported by HttpClient Android 4.3.5
+            StringEntity requestEntity = new StringEntity(jsonBodyStr,"UTF-8");
+            httpPost.setEntity(requestEntity);
+            httpPost.setHeader("Content-type", "application/json");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        try {
 			httpResponse = httpClient.execute(httpPut);
 			httpResponseCode = httpResponse.getStatusLine().getStatusCode(); 
 			HttpEntity responseEntity = httpResponse.getEntity();
@@ -335,7 +356,7 @@ public class MyWebClient {
 		}
 		
 		httpDelete = new HttpDelete(requestUrl);
-		httpDelete.setConfig(httpRequestConfig);
+		//httpDelete.setConfig(httpRequestConfig);
 		for (RequestHeader requestHeader:requestHeaders) {
 			httpDelete.addHeader(requestHeader.getKey(), requestHeader.getValue());
 		}
